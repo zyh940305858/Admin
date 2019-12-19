@@ -1,5 +1,6 @@
 import request from '@/utils/request'
 
+// 登陆接口
 export function login(data) {
   return request({
     url: '/user/login',
@@ -8,14 +9,16 @@ export function login(data) {
   })
 }
 
+// 获取当前用户信息
 export function getInfo(token) {
   return request({
-    url: '/user/info',
+    url: '/user/userInfo',
     method: 'get',
     params: { token }
   })
 }
 
+//
 export function logout() {
   return request({
     url: '/user/logout',

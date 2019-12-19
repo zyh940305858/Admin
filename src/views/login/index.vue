@@ -43,11 +43,6 @@
 
       <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">Login</el-button>
 
-      <div class="tips">
-        <span style="margin-right:20px;">username: admin</span>
-        <span> password: any</span>
-      </div>
-
     </el-form>
   </div>
 </template>
@@ -91,12 +86,16 @@ export default {
   watch: {
     $route: {
       handler: function(route) {
+        console.log(route)
         this.redirect = route.query && route.query.redirect
       },
       immediate: true
     }
   },
   methods: {
+    /**
+     * 展示密码
+     **/
     showPwd() {
       if (this.passwordType === 'password') {
         this.passwordType = ''
@@ -107,8 +106,11 @@ export default {
         this.$refs.password.focus()
       })
     },
+    /**
+     * 登陆
+     */
     handleLogin() {
-      this.$refs.loginForm.validate(async valid => {
+      this.$refs.loginForm.validate(async valid => { // 规范校验
         if (valid) {
           this.loading = true
           await this.$store.dispatch('user/login', this.loginForm).then(() => {
@@ -191,18 +193,6 @@ $light_gray:#eee;
     padding: 160px 35px 0;
     margin: 0 auto;
     overflow: hidden;
-  }
-
-  .tips {
-    font-size: 14px;
-    color: #fff;
-    margin-bottom: 10px;
-
-    span {
-      &:first-of-type {
-        margin-right: 16px;
-      }
-    }
   }
 
   .svg-container {
