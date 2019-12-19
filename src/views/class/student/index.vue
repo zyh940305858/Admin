@@ -1,6 +1,6 @@
 <template>
-  <div class="class-container">
-    class
+  <div class="student-container">
+    student
   </div>
 </template>
 

@@ -1,23 +1,18 @@
 #app {
-
   .main-container {
-    min-height: 100%;
+    min-height: calc(100% - 50px);
     transition: margin-left .28s;
-    margin-left: $sideBarWidth;
-    position: relative;
+    // margin-left: $sideBarWidth;
+    display: flex;
+    flex-direction: row;
   }
 
   .sidebar-container {
+    float: left;
     transition: width 0.28s;
     width: $sideBarWidth !important;
     background-color: $menuBg;
-    height: 100%;
-    position: fixed;
     font-size: 0px;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 1001;
     overflow: hidden;
 
     // reset element-ui css
@@ -88,11 +83,8 @@
 
   .hideSidebar {
     .sidebar-container {
+      float: left;
       width: 54px !important;
-    }
-
-    .main-container {
-      margin-left: 54px;
     }
 
     .submenu-title-noDropdown {
@@ -151,7 +143,7 @@
 
     .sidebar-container {
       transition: transform .28s;
-      width: $sideBarWidth !important;
+      // width: $sideBarWidth !important;
     }
 
     &.hideSidebar {

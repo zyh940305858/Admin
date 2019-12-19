@@ -1,6 +1,6 @@
 <template>
-  <div class="class-container">
-    class
+  <div>
+    add
   </div>
 </template>
 

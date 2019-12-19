@@ -8,10 +8,10 @@ import Layout from '@/layout'
 
 /**
  * Note: sub-menu only appear when route children.length >= 1
- * Detail see: https://panjiachen.github.io/vue-element-admin-site/guide/essentials/router-and-nav.html
+ * Detail see: https://panjiac               hen.github.io/vue-element-admin-site/guide/essentials/router-and-nav.html
  *
  * hidden: true                   if set true, item will not show in the sidebar(default is false)
- * alwaysShow: true               if set true, will always show the root menu
+ * alwaysShow: trueif set true, will always show the root menu
  *                                if not set alwaysShow, when item has more than one children route,
  *                                it will becomes nested mode, otherwise not show the root menu
  * redirect: noRedirect           if set noRedirect will no redirect in the breadcrumb
@@ -45,13 +45,56 @@ export const constantRoutes = [
 
   {
     path: '/',
+    redirect: '/test'
+  },
+
+  {
+    path: '/test',
     component: Layout,
-    redirect: '/test',
+    redirect: '/test/add',
+    meta: { title: '试题管理', icon: 'dashboard' },
     children: [{
-      path: 'test',
-      name: 'test',
-      component: () => import('@/views/test/index'),
-      meta: { title: 'Test', icon: 'dashboard' }
+      path: 'add',
+      name: 'add',
+      component: () => import('@/views/test/add/index'),
+      meta: { title: '添加试题' }
+    },
+    {
+      path: 'category',
+      name: 'category',
+      component: () => import('@/views/test/category/index'),
+      meta: { title: '试题分类' }
+    },
+    {
+      path: 'check',
+      name: 'check',
+      component: () => import('@/views/test/check/index'),
+      meta: { title: '查看试题' }
+    }]
+  },
+
+  {
+    path: '/class',
+    component: Layout,
+    redirect: '/class/class',
+    meta: { title: '班级管理', icon: 'example' },
+    children: [{
+      path: 'class',
+      name: 'class',
+      component: () => import('@/views/class/class/index'),
+      meta: { title: '班级管理' }
+    },
+    {
+      path: 'student',
+      name: 'student',
+      component: () => import('@/views/class/student/index'),
+      meta: { title: '学生管理' }
+    },
+    {
+      path: 'classroom',
+      name: 'classroom',
+      component: () => import('@/views/class/classroom/index'),
+      meta: { title: '教室管理' }
     }]
   },
 
