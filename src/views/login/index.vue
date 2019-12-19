@@ -3,7 +3,7 @@
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
 
       <div class="title-container">
-        <h3 class="title">Login Form</h3>
+        <h3 class="title">ADMIN</h3>
       </div>
 
       <el-form-item prop="username">
@@ -53,20 +53,22 @@
 </template>
 
 <script>
-import { validUsername } from '@/utils/validate'
 
 export default {
   name: 'Login',
   data() {
+    /**
+     * 用户名密码的校验规则
+     **/
     const validateUsername = (rule, value, callback) => {
-      if (!validUsername(value)) {
+      if (!value) {
         callback(new Error('Please enter the correct user name'))
       } else {
         callback()
       }
     }
     const validatePassword = (rule, value, callback) => {
-      if (value.length < 6) {
+      if (!/^(?=.*\d)(?=.*[a-zA-Z])(?=.*[~!@#$%^&*])[\da-zA-Z~!@#$%^&*]{8,}$/.test(value)) {
         callback(new Error('The password can not be less than 6 digits'))
       } else {
         callback()
@@ -74,8 +76,8 @@ export default {
     }
     return {
       loginForm: {
-        username: 'admin',
-        password: '111111'
+        username: 'chenmanjie',
+        password: 'Chenmanjie123!'
       },
       loginRules: {
         username: [{ required: true, trigger: 'blur', validator: validateUsername }],
@@ -106,15 +108,14 @@ export default {
       })
     },
     handleLogin() {
-      this.$refs.loginForm.validate(valid => {
+      this.$refs.loginForm.validate(async valid => {
         if (valid) {
           this.loading = true
-          this.$store.dispatch('user/login', this.loginForm).then(() => {
+          await this.$store.dispatch('user/login', this.loginForm).then(() => {
             this.$router.push({ path: this.redirect || '/' })
             this.loading = false
-          }).catch(() => {
-            this.loading = false
-          })
+          }).catch(() => {})
+          this.loading = false
         } else {
           console.log('error submit!!')
           return false
