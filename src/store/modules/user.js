@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2019-12-19 14:41:57
+ * @LastEditTime : 2019-12-19 14:58:46
+ * @LastEditors  : Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \Admin\src\store\modules\user.js
+ */
 import { login, logout, getInfo } from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import { resetRouter } from '@/router'
@@ -33,24 +41,24 @@ const actions = {
   // get user info
   getInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
-      getInfo(state.token).then(response => {
-        const { data } = response
+      resolve()
+      // getInfo(state.token).then(response => {
+      //   const { data } = response
 
-        if (!data) {
-          reject('Verification failed, please Login again.')
-        }
+      //   if (!data) {
+      //     reject('Verification failed, please Login again.')
+      //   }
 
-        const { name, avatar } = data
+      //   const { name, avatar } = data
 
-        commit('SET_NAME', name)
-        commit('SET_AVATAR', avatar)
-        resolve(data)
-      }).catch(error => {
-        reject(error)
-      })
+      //   commit('SET_NAME', name)
+      //   commit('SET_AVATAR', avatar)
+      //   resolve(data)
+      // }).catch(error => {
+      //   reject(error)
+      // })
     })
   },
-
   // user logout
   logout({ commit, state }) {
     return new Promise((resolve, reject) => {
