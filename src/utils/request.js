@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2019-12-19 14:41:57
+ * @LastEditTime: 2019-12-19 14:57:33
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: \Admin\src\utils\request.js
+ */
 import axios from 'axios'
 import { MessageBox, Message } from 'element-ui'
 import store from '@/store'
@@ -5,7 +13,7 @@ import { getToken } from '@/utils/auth'
 
 // create an axios instance
 const service = axios.create({
-  baseURL: 'http://127.0.0.1:7002', // url = base url + request url
+  baseURL: 'http://169.254.12.155:7002', // url = base url + request url
   // withCredentials: true, // send cookies when cross-domain requests
   timeout: 5000 // request timeout
 })
