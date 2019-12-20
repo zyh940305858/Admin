@@ -40,12 +40,14 @@ export default {
       exam: "exam/exam"
     }),
     deleteRow(index, rows) {
-      console.log(rows[index])
+      this.$router.push({path:'/Marking/exam',query:{grade_id:rows[index].grade_id}})
+      // console.log(rows[index])
       // console.log(111)
     }
   },
   created() {},
   mounted() {
+    // console.log(this.examlist)
     this.exam();
   }
 };

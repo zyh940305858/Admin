@@ -56,7 +56,7 @@ export const constantRoutes = [
         meta: { title: '待批班级'}
       },
       {
-        path: 'exam',
+        path: '/Marking/exam',
         component: () => import('@/views/Marking/exam/index'),
         name: 'exam',
       }

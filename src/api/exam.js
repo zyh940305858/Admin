@@ -8,3 +8,12 @@ export function exam(params) {
       params
     })
   }
+
+//学生试卷列表
+export function student(params){
+  return request({
+    url:'/exam/student',
+    method: 'get',
+    params
+  })
+}
