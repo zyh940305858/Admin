@@ -1,0 +1,43 @@
+.test-add {
+  padding: 0px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  flex: auto;
+  background: #f0f2f5;
+  min-height: 0;
+}
+
+.test-add .test-add-title {
+  padding: 20px 0px;
+  margin-top: 10px;
+}
+
+.test-add .test-add-content{
+    background: rgb(255, 255, 255);
+    padding: 24px;
+    margin: 0px 0px 20px;
+    border-radius: 10px;
+}
+
+.test-add .test-add-content .test-add-item{
+  font-size: 14px;
+  font-variant: tabular-nums;
+  line-height: 1.5;
+  color: rgba(0, 0, 0, 0.65);
+  box-sizing: border-box;
+  list-style: none;
+  margin-bottom: 24px;
+  vertical-align: top;
+}
+
+.test-add .test-add-content .test-add-item {
+  label{
+    text-align: left;
+    font-size: 14px;
+    color: #606266;
+    line-height: 40px;
+    padding: 0 12px 0 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+}

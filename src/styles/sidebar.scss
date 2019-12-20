@@ -1,14 +1,13 @@
 #app {
   .main-container {
-    min-height: calc(100% - 50px);
+    height: calc(100% - 50px);
     transition: margin-left .28s;
     // margin-left: $sideBarWidth;
     display: flex;
-    flex-direction: row;
+    // flex-direction: row;
   }
 
   .sidebar-container {
-    float: left;
     transition: width 0.28s;
     width: $sideBarWidth !important;
     background-color: $menuBg;

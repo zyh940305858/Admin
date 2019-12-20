@@ -48,6 +48,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 
 export default {
   name: 'Login',
@@ -86,13 +87,15 @@ export default {
   watch: {
     $route: {
       handler: function(route) {
-        console.log(route)
         this.redirect = route.query && route.query.redirect
       },
       immediate: true
     }
   },
   methods: {
+    ...mapActions({
+      login: 'user/login'
+    }),
     /**
      * 展示密码
      **/
@@ -113,11 +116,13 @@ export default {
       this.$refs.loginForm.validate(async valid => { // 规范校验
         if (valid) {
           this.loading = true
-          await this.$store.dispatch('user/login', this.loginForm).then(() => {
+          try {
+            await this.login(this.loginForm)
             this.$router.push({ path: this.redirect || '/' })
             this.loading = false
-          }).catch(() => {})
-          this.loading = false
+          } catch (e) {
+            this.loading = false
+          }
         } else {
           console.log('error submit!!')
           return false

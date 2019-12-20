@@ -21,9 +21,18 @@ html {
   box-sizing: border-box;
 }
 
+h1,h2,h3,h4,h5,h6{
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: 500;
+}
+
 #app {
   height: 100%;
+  
 }
+
 
 *,
 *:before,
