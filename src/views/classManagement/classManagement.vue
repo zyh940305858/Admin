@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2019-12-19 16:43:45
- * @LastEditTime : 2019-12-21 07:47:20
+ * @LastEditTime : 2019-12-22 21:42:26
  * @LastEditors  : Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Admin\src\views\classManagement\classManagement.vue
@@ -10,41 +10,40 @@
   <div class="classContainer">
     <p>班级管理</p>
     <ul>
-     <!-- 弹框组件 -->
-      <Alert/>
+      <!-- 弹框组件 -->
+      <Alert />
       <!-- 列表组件 -->
-      <List :getStateList="getStateList"/>
+      <List :getStateList="getStateList" />
     </ul>
   </div>
 </template>
 <script>
 /**
  * @description: 引入弹框组件
- * @param {type} 
+ * @param {type}
  * @return: ../../components/ClassManagement/class/list
  */
 import List from "../../components/ClassManagement/class/list";
 import Alert from "../../components/ClassManagement/class/alert";
 import { mapState, mapMutations, mapGetters, mapActions } from "vuex";
 export default {
- components:{
-   List,
-   Alert
- },
+  components: {
+    List,
+    Alert
+  },
   computed: {
     ...mapState({
       getStateList: store => store.classManagement.getStateList
     })
   },
- methods: {
+  methods: {
     ...mapActions({
       getOverClassActionsList: "classManagement/getOverClassActionsList"
-    }),
+    })
   },
   created() {
     this.getOverClassActionsList();
   }
- 
 };
 </script>
 <style lang="scss" scoped>
@@ -65,8 +64,7 @@ export default {
     background: #fff;
     border-radius: 1rem;
     padding: 1.25rem;
-    margin-bottom:2rem;
-    
+    margin-bottom: 2rem;
   }
 }
 </style>

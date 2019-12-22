@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2019-12-19 14:28:47
- * @LastEditTime : 2019-12-20 17:08:02
+ * @LastEditTime : 2019-12-22 21:42:11
  * @LastEditors  : Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Admin\src\App.vue
@@ -32,10 +32,8 @@ button {
     from(#00f),
     to(#5e80fa)
   );
-   border: none;
-    border-radius: 7px;
-    color: #fff;
+  border: none;
+  border-radius: 7px;
+  color: #fff;
 }
-
-
 </style>

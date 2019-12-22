@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2019-12-20 09:57:14
+ * @LastEditTime : 2019-12-22 21:29:41
+ * @LastEditors  : Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \Admin\src\api\classManagement.js
+ */
 import request from '@/utils/request'
 // 全部班级数据
 export function getOverClassActionsList(params) {
@@ -11,6 +19,22 @@ export function getOverClassActionsList(params) {
 export function getOverClassroomActionsList(params) {
   return request({
     url: '/manger/room',
+    method: 'get',
+    params
+  })
+}
+// 全部课程
+export function getAllLessonsActionsList(params) {
+  return request({
+    url: '/exam/subject',
+    method: 'get',
+    params
+  })
+}
+// 获取已经分配班级
+export function getClassAndGradeActionsList(params) {
+  return request({
+    url: '/manger/grade',
     method: 'get',
     params
   })

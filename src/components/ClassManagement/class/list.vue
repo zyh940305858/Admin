@@ -1,7 +1,7 @@
 <!--
- * @Author: your name
+ * @Author: 王弘钢
  * @Date: 2019-12-19 21:29:48
- * @LastEditTime : 2019-12-20 16:28:37
+ * @LastEditTime : 2019-12-22 21:49:37
  * @LastEditors  : Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Admin\src\components\ClassManagement\class\alert.vue
@@ -45,28 +45,26 @@
 
 <script>
 export default {
-  props:["getStateList"],
+  props: ["getStateList"],
   data() {
-    return {
-
-    };
+    return {};
   },
   methods: {
     handleEdit(index, row) {
-      console.log(index, row,'---------------handleEdit');
+      console.log(index, row, "---------------handleEdit");
     },
     handleDelete(index, row) {
-      console.log(index, row,'---------------handleDelete');
+      console.log(index, row, "---------------handleDelete");
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-.writeColor{
+.writeColor {
   color: #0139fd;
 }
-/deep/.el-table__header{
+/deep/.el-table__header {
   background: #000;
 }
 </style>

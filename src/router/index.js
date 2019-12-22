@@ -92,7 +92,7 @@ export const constantRoutes = [
         path: 'ClassroomManagement',
         component: () => import('@/views/classManagement/ClassroomManagement'),
         name: 'ClassroomManagement',
-        meta: { title: '教室管理', icon: 'example'},
+        meta: { title: '教室管理', icon: 'example' },
       },
       {
         path: 'studentManagement',

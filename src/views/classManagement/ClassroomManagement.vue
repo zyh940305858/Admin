@@ -10,41 +10,41 @@
   <div class="classContainer">
     <p>班级管理</p>
     <ul>
-     <!-- 弹框组件 -->
-      <Alert/>
+      <!-- 弹框组件 -->
+      <Alert />
       <!-- 数据组件 -->
-      <List :getOverClassStateList="getOverClassStateList"/>
+      <List :getOverClassStateList="getOverClassStateList" />
     </ul>
   </div>
 </template>
 <script>
 /**
  * @description: 引入弹框组件
- * @param {type} 
+ * @param {type}
  * @return: ../../components/ClassManagement/class/list
  */
 import List from "../../components/ClassManagement/classroom/list";
 import Alert from "../../components/ClassManagement/classroom/alert";
 import { mapState, mapMutations, mapGetters, mapActions } from "vuex";
 export default {
- components:{
-   List,
-   Alert
- },
+  components: {
+    List,
+    Alert
+  },
   computed: {
     ...mapState({
-      getOverClassStateList: store => store.classManagement.getOverClassStateList
+      getOverClassStateList: store =>
+        store.classManagement.getOverClassStateList
     })
   },
- methods: {
+  methods: {
     ...mapActions({
-       getOverClassroomActionsList: "classManagement/getOverClassroomActionsList"
-    }),
+      getOverClassroomActionsList: "classManagement/getOverClassroomActionsList"
+    })
   },
   created() {
-     this.getOverClassroomActionsList();
+    this.getOverClassroomActionsList();
   }
- 
 };
 </script>
 <style lang="scss" scoped>
@@ -65,8 +65,7 @@ export default {
     background: #fff;
     border-radius: 1rem;
     padding: 1.25rem;
-    margin-bottom:2rem;
-    
+    margin-bottom: 2rem;
   }
 }
 </style>
