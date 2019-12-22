@@ -1,0 +1,53 @@
+<!--
+ * @Author: your name
+ * @Date: 2019-12-20 16:43:55
+ * @LastEditTime : 2019-12-20 17:03:38
+ * @LastEditors  : Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \Admin\src\components\ClassroomManagement\list.vue
+ -->
+<template>
+  <div>
+    <el-table :data="getOverClassStateList" style="width: 100%">
+  
+      <el-table-column label="教室号" width="650">
+        <template slot-scope="scope">
+          <span>{{ scope.row.room_text }}</span>
+        </template>
+      </el-table-column>
+
+      <el-table-column label="操作" width="650">
+        <template slot-scope="scope">
+          <span
+            size="mini"
+            type="danger"
+            @click="handleDelete(scope.$index, scope.row)"
+          >删除</span>
+        </template>
+      </el-table-column>
+    </el-table>
+  </div>
+</template>
+
+<script>
+export default {
+  props:["getOverClassStateList"],
+  data() {
+    return {
+
+    };
+  },
+  methods: {
+    handleDelete(index, row) {
+      console.log(index, row,'---------------handleDelete');
+    }
+  }
+};
+</script>
+
+<style lang="scss" scoped>
+
+/deep/.el-table__header{
+  background: #000;
+}
+</style>
