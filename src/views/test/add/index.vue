@@ -95,11 +95,10 @@ export default {
       getInfo: 'user/getInfo',
       addtestquestion: 'test/addtestquestion'
     }),
-    addtest() {
+    async addtest() {
       this.getInfo()
       const obj = { ...this.form, userid: this.userid }
-      this.addtestquestion(obj)
-      console.log(1)
+      await this.addtestquestion(obj)
     }
   }
 }

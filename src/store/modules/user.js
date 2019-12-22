@@ -29,6 +29,7 @@ const actions = {
   // get user info
   async getInfo({ commit }) {
     const res = await getInfo()
+    console.log(res)
     commit('SET_USERID', res.data.user_id)
   },
 

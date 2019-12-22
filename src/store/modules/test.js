@@ -1,4 +1,4 @@
-import { gettesttype, getcoursetype, getquestiontype, addtest } from '@/api/test'
+import { gettesttype, getcoursetype, getquestiontype, addtest, insertquestiontype } from '@/api/test'
 
 const state = {
   testtypelist: [],
@@ -38,6 +38,11 @@ const actions = {
 
   async addtestquestion({ commit }, payload) {
     const res = await addtest(payload)
+    console.log(res)
+  },
+
+  async addquestiontype({ commit }, payload) {
+    const res = await insertquestiontype(payload)
     console.log(res)
   }
 }

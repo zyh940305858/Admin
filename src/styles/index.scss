@@ -28,9 +28,29 @@ h1,h2,h3,h4,h5,h6{
   font-weight: 500;
 }
 
+button.btn{
+  height: 40px;
+  padding: 0 40px!important;
+  border-radius: 4px!important;
+  border: 0!important;
+  font-size: 14px!important;
+  color: #fff!important;
+  background: linear-gradient(-90deg,#4e75ff,#0139fd)!important;
+}
+
 #app {
   height: 100%;
   
+}
+
+#app .app-main a{
+  color: #0139FD;
+  background-color: transparent;
+  text-decoration: none;
+  outline: none;
+  cursor: pointer;
+  transition: color 0.3s;
+  -webkit-text-decoration-skip: objects;
 }
 
 

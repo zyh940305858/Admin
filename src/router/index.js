@@ -76,25 +76,25 @@ export const constantRoutes = [
   {
     path: '/class',
     component: Layout,
-    redirect: '/class/class',
+    redirect: '/grade/grade',
     meta: { title: '班级管理', icon: 'example' },
     children: [{
-      path: 'class',
-      name: 'class',
-      component: () => import('@/views/class/class/index'),
+      path: 'grade',
+      name: 'grade',
+      component: () => import('@/views/grade/grade/index'),
       meta: { title: '班级管理' }
-    },
-    {
-      path: 'student',
-      name: 'student',
-      component: () => import('@/views/class/student/index'),
-      meta: { title: '学生管理' }
     },
     {
       path: 'classroom',
       name: 'classroom',
-      component: () => import('@/views/class/classroom/index'),
+      component: () => import('@/views/grade/classroom/index'),
       meta: { title: '教室管理' }
+    },
+    {
+      path: 'student',
+      name: 'student',
+      component: () => import('@/views/grade/student/index'),
+      meta: { title: '学生管理' }
     }]
   },
 
