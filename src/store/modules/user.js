@@ -1,4 +1,12 @@
-import { login, logout } from '@/api/user'
+/*
+ * @Author: your name
+ * @Date: 2019-12-19 14:41:57
+ * @LastEditTime : 2019-12-19 14:58:46
+ * @LastEditors  : Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \Admin\src\store\modules\user.js
+ */
+import { login, logout, getInfo } from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import { resetRouter } from '@/router'
 
@@ -33,11 +41,10 @@ const actions = {
   // get user info
   getInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
-      // const roles = ['admin']
       resolve()
       // getInfo(state.token).then(response => {
       //   const { data } = response
-      //   resolve(data)
+
       //   if (!data) {
       //     reject('Verification failed, please Login again.')
       //   }
@@ -52,7 +59,6 @@ const actions = {
       // })
     })
   },
-
   // user logout
   logout({ commit, state }) {
     return new Promise((resolve, reject) => {
