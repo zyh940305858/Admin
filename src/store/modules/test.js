@@ -1,9 +1,11 @@
-import { gettesttype, getcoursetype, getquestiontype, addtest, insertquestiontype } from '@/api/test'
+import { gettesttype, getcoursetype, getquestiontype, addtest, insertquestiontype, selectalltest, selecttest } from '@/api/test'
 
 const state = {
   testtypelist: [],
   coursetypelist: [],
-  questiontypelist: []
+  questiontypelist: [],
+  testlist: [],
+  detaildata: {}
 }
 
 const mutations = {
@@ -17,6 +19,14 @@ const mutations = {
 
   SET_QUESTIONTYPE: (state, data) => {
     state.questiontypelist = data
+  },
+
+  SET_TESTLIST: (state, data) => {
+    state.testlist = data
+  },
+
+  SET_DETAILDATA: (state, data) => {
+    state.detaildata = data
   }
 }
 
@@ -44,6 +54,18 @@ const actions = {
   async addquestiontype({ commit }, payload) {
     const res = await insertquestiontype(payload)
     console.log(res)
+  },
+
+  async getalltest({ commit }, payload) {
+    const res = await selectalltest()
+    commit('SET_TESTLIST', res.data)
+    console.log(res)
+  },
+
+  async getdetailtest({ commit }, payload) {
+    const res = await selecttest(payload)
+    console.log(res)
+    commit('SET_DETAILDATA', res.data)
   }
 }
 

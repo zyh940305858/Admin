@@ -3,7 +3,7 @@
     margin-top: 10px;
 }
 
-.test-check .test-check-content{
+.test-check .test-check-content,.test-check-list{
     background: rgb(255, 255, 255);
     padding: 24px;
     margin: 0px 0px 20px;
@@ -14,4 +14,70 @@
 .test-check .test-check-content .test-check-item {
     margin-bottom: 25px;
     display: flex;
+}
+
+.test-check .test-check-list ul {
+    list-style: none;
+}
+
+.test-check .test-check-list ul li {
+    align-items: center;
+    display: flex;
+    padding: 12px 0;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.test-check .test-check-list ul li .content {
+    justify-content: flex-start;
+    flex-direction: column;
+    display: flex;
+    flex: 1;
+}
+
+.test-check .test-check-list ul li .link {
+    flex: 0 0 auto;
+    margin-left: 48px;
+    padding: 0;
+    list-style: none;
+}
+
+.test-check .test-check-list ul li .link a{
+    color: #0139FD;
+}
+
+.test-check .test-check-list ul li .content .list-item-title {
+    color: rgba(0, 0, 0, 0.65);
+    margin-bottom: 4px;
+    font-size: 14px;
+    line-height: 22px;
+}
+
+.test-check .test-check-list ul li .content p {
+    margin: 10px 0px;
+}
+
+.test-check .test-check-list ul li .content p .el-tag{
+    font-size: 14px;
+    font-variant: tabular-nums;
+    line-height: 1.5;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: inline-block;
+    line-height: 20px;
+    height: 22px;
+    padding: 0 7px;
+    border-radius: 2px;
+    font-size: 12px;
+    transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+    opacity: 1;
+    margin-right: 8px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.test-check .test-check-list ul li .content >span {
+    color: #0139FD;
+    font-size: 14px;
 }

@@ -1,0 +1,26 @@
+.test-check-detail .test-check-detail-title {
+    padding: 20px 0px;
+    margin-top: 10px;
+}
+
+
+.test-check-detail .test-check-detail-main {
+    display: flex;
+}
+
+
+.test-check-detail .test-check-detail-main .test-check-detail-content:nth-child(1) {
+    flex: 1;
+    background: rgb(255, 255, 255);
+    padding: 24px;
+    margin: 0px 0px 20px;
+    border-radius: 10px;
+}
+
+.test-check-detail .test-check-detail-main .test-check-detail-content:nth-child(2) {
+    width: 500px;
+    background: rgb(255, 255, 255);
+    padding: 24px;
+    margin: 0px 0px 20px;
+    border-radius: 10px;
+}

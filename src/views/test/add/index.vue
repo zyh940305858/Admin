@@ -31,9 +31,7 @@
         <el-form-item>
           <label>请选择题目类型：</label>
           <el-select v-model="form.questiontype" placeholder="请选择">
-            <el-option v-for="(item,index) in questiontypelist" :key="index" :label="item.questions_type_text" :value="item.questions_type_id">
-              {{ item.questions_type_text }}
-            </el-option>
+            <el-option v-for="(item,index) in questiontypelist" :key="index" :label="item.questions_type_text" :value="item.questions_type_id" />
           </el-select>
         </el-form-item>
 

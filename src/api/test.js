@@ -42,3 +42,26 @@ export function insertquestiontype(data) {
     data
   })
 }
+
+// 获取所有试题
+export function selectalltest() {
+  return request({
+    url: '/exam/questions/new',
+    method: 'get'
+  })
+}
+
+// 按条件查询试题
+export function selecttest(data) {
+  const { questions_id, questions_type_id, subject_id, exam_id } = data
+  return request({
+    url: '/exam/questions/condition',
+    method: 'get',
+    params: {
+      questions_id,
+      questions_type_id,
+      subject_id,
+      exam_id
+    }
+  })
+}

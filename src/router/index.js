@@ -70,24 +70,13 @@ export const constantRoutes = [
       name: 'check',
       component: () => import('@/views/test/check/index'),
       meta: { title: '查看试题' }
-    }]
-  },
-  {
-    path: '/exam',
-    component: Layout,
-    redirect: '/exam/add',
-    meta: { title: '考试管理', icon: 'example' },
-    children: [{
-      path: 'add',
-      name: 'add',
-      component: () => import('@/views/exam/add/index'),
-      meta: { title: '添加考试' }
     },
     {
-      path: 'list',
-      name: 'list',
-      component: () => import('@/views/exam/list/index'),
-      meta: { title: '试卷列表' }
+      path: 'detail',
+      name: 'detail',
+      hidden: true,
+      component: () => import('@/views/test/detail/index'),
+      meta: { title: '试题详情' }
     }]
   },
 
