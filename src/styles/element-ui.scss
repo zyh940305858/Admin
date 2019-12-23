@@ -15,13 +15,16 @@
   display: none;
 }
 
-
 // to fixed https://github.com/ElemeFE/element/issues/2461
 .el-dialog {
   transform: none;
   left: 0;
   position: relative;
   margin: 0 auto;
+}
+
+.el-form-item {
+  margin-bottom: 24px;
 }
 
 // refine element ui upload

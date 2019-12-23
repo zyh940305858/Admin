@@ -17,18 +17,14 @@
         <el-form-item>
           <label>请选择考试类型：</label>
           <el-select v-model="form.testtype" placeholder="请选择">
-            <el-option v-for="(item,index) in testtypelist" :key="index" :label="item.exam_name" :value="item.exam_id">
-              {{ item.exam_name }}
-            </el-option>
+            <el-option v-for="(item,index) in testtypelist" :key="index" :label="item.exam_name" :value="item.exam_id" />
           </el-select>
         </el-form-item>
 
         <el-form-item>
           <label>请选择课程类型：</label>
           <el-select v-model="form.coursetype" placeholder="请选择">
-            <el-option v-for="(item,index) in coursetypelist" :key="index" :label="item.subject_text" :value="item.subject_id">
-              {{ item.subject_text }}
-            </el-option>
+            <el-option v-for="(item,index) in coursetypelist" :key="index" :label="item.subject_text" :value="item.subject_id" />
           </el-select>
         </el-form-item>
 

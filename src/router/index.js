@@ -72,29 +72,22 @@ export const constantRoutes = [
       meta: { title: '查看试题' }
     }]
   },
-
   {
-    path: '/class',
+    path: '/exam',
     component: Layout,
-    redirect: '/grade/grade',
-    meta: { title: '班级管理', icon: 'example' },
+    redirect: '/exam/add',
+    meta: { title: '考试管理', icon: 'example' },
     children: [{
-      path: 'grade',
-      name: 'grade',
-      component: () => import('@/views/grade/grade/index'),
-      meta: { title: '班级管理' }
+      path: 'add',
+      name: 'add',
+      component: () => import('@/views/exam/add/index'),
+      meta: { title: '添加考试' }
     },
     {
-      path: 'classroom',
-      name: 'classroom',
-      component: () => import('@/views/grade/classroom/index'),
-      meta: { title: '教室管理' }
-    },
-    {
-      path: 'student',
-      name: 'student',
-      component: () => import('@/views/grade/student/index'),
-      meta: { title: '学生管理' }
+      path: 'list',
+      name: 'list',
+      component: () => import('@/views/exam/list/index'),
+      meta: { title: '试卷列表' }
     }]
   },
 
