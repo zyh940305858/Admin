@@ -23,8 +23,17 @@ export default {
   min-height: calc(100vh - 50px);
   width: 100%;
   position: relative;
-  overflow: hidden;
+  overflow: auto;
 }
+.app-main>div{
+  padding: 0px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  flex: auto;
+  background: #f0f2f5;
+  min-height: 0;
+}
+
 .fixed-header+.app-main {
   padding-top: 50px;
 }

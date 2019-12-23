@@ -54,7 +54,7 @@ export default {
     }),
     deleteRow(index, rows) {
       let grade_id=rows[index].grade_id
-      this.$router.push({path:'/Marking/exam',query:{grade_id}})
+      this.$router.push({path:'/Marking/approval',query:{grade_id}})
       console.log(rows[index].grade_id,'-------------------------------------')
       // console.log(111)
     },
