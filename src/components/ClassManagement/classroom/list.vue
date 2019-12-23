@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2019-12-20 16:43:55
- * @LastEditTime : 2019-12-22 20:29:50
+ * @LastEditTime : 2019-12-23 19:53:13
  * @LastEditors  : Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Admin\src\components\ClassroomManagement\list.vue
@@ -25,14 +25,19 @@
 </template>
 
 <script>
+import { mapState, mapMutations, mapGetters, mapActions } from "vuex";
 export default {
   props: ["getOverClassStateList"],
   data() {
     return {};
   },
   methods: {
+     ...mapActions({
+      deleteClassRoomActions: "classManagement/deleteClassRoomActions"
+    }),
     handleDelete(index, row) {
       console.log(index, row, "---------------handleDelete");
+      this.deleteClassRoomActions({room_id:row.room_id})
     }
   }
 };

@@ -1,7 +1,7 @@
 <!--
  * @Author: 王弘钢
  * @Date: 2019-12-19 21:29:48
- * @LastEditTime : 2019-12-22 21:49:37
+ * @LastEditTime : 2019-12-23 20:59:17
  * @LastEditors  : Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Admin\src\components\ClassManagement\class\alert.vue
@@ -40,21 +40,34 @@
         </template>
       </el-table-column>
     </el-table>
+    <UpdateAlert :dialogFormVisible="dialogFormVisible"/>
   </div>
 </template>
 
 <script>
+import { mapState, mapMutations, mapGetters, mapActions } from "vuex";
+import UpdateAlert from './updateAlert'
 export default {
   props: ["getStateList"],
+  components:{
+UpdateAlert
+  },
   data() {
-    return {};
+    return {
+      dialogFormVisible:false
+    };
   },
   methods: {
+     ...mapActions({
+      deleteClassActions: "classManagement/deleteClassActions"
+    }),
     handleEdit(index, row) {
+      this.dialogFormVisible = true
       console.log(index, row, "---------------handleEdit");
     },
     handleDelete(index, row) {
       console.log(index, row, "---------------handleDelete");
+      this.deleteClassActions({grade_id:row.grade_id})
     }
   }
 };

@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2019-12-19 17:03:51
- * @LastEditTime : 2019-12-20 18:13:35
+ * @LastEditTime : 2019-12-23 19:50:26
  * @LastEditors  : Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Admin\src\views\classManagement\ClassroomManagement.vue
@@ -44,7 +44,10 @@ export default {
   },
   created() {
     this.getOverClassroomActionsList();
-  }
+  },
+  updated() {
+     this.getOverClassroomActionsList();
+  },
 };
 </script>
 <style lang="scss" scoped>

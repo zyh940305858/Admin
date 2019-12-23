@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2019-12-20 16:44:08
- * @LastEditTime : 2019-12-22 20:31:35
+ * @LastEditTime : 2019-12-23 19:44:00
  * @LastEditors  : Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Admin\src\components\ClassroomManagement\alert.vue
@@ -13,8 +13,13 @@
 </template>
 
 <script>
+import { mapState, mapMutations, mapGetters, mapActions } from "vuex";
+
 export default {
   methods: {
+    ...mapActions({
+      addClassRoomActions: "classManagement/addClassRoomActions"
+    }),
     open() {
       this.$prompt("教室号", "添加班级", {
         confirmButtonText: "提交",
@@ -23,6 +28,7 @@ export default {
         inputErrorMessage: "教室号不正确"
       })
         .then(({ value }) => {
+          this.addClassRoomActions({room_text:value})
           this.$message({
             type: "success",
             message: "教室号是: " + value

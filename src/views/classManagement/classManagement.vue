@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2019-12-19 16:43:45
- * @LastEditTime : 2019-12-22 21:42:26
+ * @LastEditTime : 2019-12-23 15:54:11
  * @LastEditors  : Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Admin\src\views\classManagement\classManagement.vue
@@ -43,6 +43,10 @@ export default {
   },
   created() {
     this.getOverClassActionsList();
+  },
+  updated(){
+    this.getOverClassActionsList();
+
   }
 };
 </script>

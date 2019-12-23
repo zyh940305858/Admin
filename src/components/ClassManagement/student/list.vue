@@ -1,6 +1,6 @@
 <!--
  * @Author: your name
- * @LastEditTime : 2019-12-22 21:41:35
+ * @LastEditTime : 2019-12-23 08:37:09
  * @LastEditors  : Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Admin\src\components\ClassManagement\class\alert.vue
@@ -36,7 +36,7 @@
         </template>
       </el-table-column>
 
-      <el-table-column label="操作" width="200">
+      <el-table-column label="操作" width="150">
         <template slot-scope="scope">
           <span
             size="mini"

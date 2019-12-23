@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click="dialogFormVisible = true">+添加班级</button>
+    <!-- <button @click="dialogFormVisible = true">+添加班级</button> -->
     <!-- Form -->
     <el-dialog title="添加班级" :visible.sync="dialogFormVisible">
       <el-form :model="form" ref="form" label-width="100px" class="demo-ruleForm">
@@ -35,7 +35,7 @@
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="dialogFormVisible = false">取 消</el-button>
+        <el-button type="primary" @click="close">取 消</el-button>
         <el-button type="primary" @click="submit">提交</el-button>
       </div>
     </el-dialog>
@@ -46,9 +46,10 @@
 import { mapState, mapMutations, mapGetters, mapActions } from "vuex";
 import Axios from 'axios';
 export default {
+  props:["dialogFormVisible"],
   data() {
     return {
-      dialogFormVisible: false,
+      // dialogFormVisible: false,
       form: {
         grade_name: "",
         room_id: "",
@@ -72,6 +73,9 @@ export default {
       getAllLessonsActionsList: "classManagement/getAllLessonsActionsList",
       addClassActions: "classManagement/addClassActions"
     }),
+    close(){
+      this.dialogFormVisible = false;
+    },
     submit(){
       this.dialogFormVisible = false;
       let list=JSON.parse(JSON.stringify(this.form));

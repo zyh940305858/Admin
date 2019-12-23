@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2019-12-20 09:57:14
- * @LastEditTime : 2019-12-22 21:29:41
+ * @LastEditTime : 2019-12-23 19:43:11
  * @LastEditors  : Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Admin\src\api\classManagement.js
@@ -45,5 +45,38 @@ export function getOverStudentActionsList(params) {
     url: '/manger/student',
     method: 'get',
     params
+  })
+}
+// 添加班级
+export function addClassActions(data) {
+  return request({
+    url: '/manger/grade',
+    method: 'post',
+    data
+  })
+}
+// 删除班级
+export function deleteClassActions(data) {
+  console.log(data,'-----------------------------data');
+  return request({
+    url: '/manger/grade/delete',
+    method: 'delete',
+    data
+  })
+}
+// 添加教室
+export function addClassRoomActions(data) {
+  return request({
+    url: '/manger/room',
+    method: 'post',
+    data
+  })
+}
+// 删除教室
+export function deleteClassRoomActions(data) {
+  return request({
+    url: '/manger/room/delete',
+    method: 'delete',
+    data
   })
 }

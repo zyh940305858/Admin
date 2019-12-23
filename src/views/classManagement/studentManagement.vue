@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2019-12-19 17:03:51
- * @LastEditTime : 2019-12-22 21:34:39
+ * @LastEditTime : 2019-12-23 08:54:55
  * @LastEditors  : Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Admin\src\views\classManagement\ClassroomManagement.vue
@@ -9,14 +9,15 @@
 <template>
   <div class="classContainer">
     <p>学生管理</p>
+      <!-- 搜索栏组件 -->
     <SearchBar
       :getOverClassStateList="getOverClassStateList"
       :getClassAndGradeStateList="getClassAndGradeStateList"
     />
     <ul>
-      <!-- 搜索栏组件 -->
       <!-- 数据组件 -->
       <List :getOverStudentStateList="getOverStudentStateList " />
+      <Pagination/>
     </ul>
   </div>
 </template>
@@ -24,16 +25,18 @@
 /**
  * @description: 引入弹框组件
  * @param {type}
- * @return: s
+ * @return: 
  */
 import List from "../../components/ClassManagement/student/list";
 import SearchBar from "../../components/ClassManagement/student/searchBar";
+import Pagination from "../../components/ClassManagement/student/pagination";
 // import Alert from "../../components/ClassManagement/classroom/alert";
 import { mapState, mapMutations, mapGetters, mapActions } from "vuex";
 export default {
   components: {
     List,
-    SearchBar
+    SearchBar,
+    Pagination
     //  Alert
   },
   computed: {
