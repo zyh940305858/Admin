@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2019-12-19 16:49:25
- * @LastEditTime : 2019-12-19 17:00:29
+ * @LastEditTime : 2019-12-20 16:25:12
  * @LastEditors  : Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Admin\src\router\index.js
@@ -74,13 +74,13 @@ export const constantRoutes = [
         path: 'addTheTest',
         component: () => import('../views/examManagement/addTheTest.vue'),
         name: 'addTheTest',
-        meta: { title: '添加考试', icon: 'example' }
+        meta: { title: '添加用户', icon: 'example' }
       },
       {
         path: 'paperList',
         component: () => import('../views/examManagement/paperList'),
         name: 'paperList',
-        meta: { title: '试卷列表', icon: 'example'},
+        meta: { title: '用户展示', icon: 'example'},
       },
     ]
   },
