@@ -19,7 +19,7 @@
     <div>
         <h4>试卷列表</h4>
         <el-table :data="studentlist" style="width: 100%">
-          <el-table-column prop="grade_id" label="班级" width="180"></el-table-column>
+          <el-table-column prop="grade_name" label="班级" width="180"></el-table-column>
           <el-table-column prop="student_name" label="姓名" width="180"></el-table-column>
           <el-table-column prop label="阅卷状态" width="180">未阅</el-table-column>
           <el-table-column prop="start_time" label="开始时间" width="180"></el-table-column>
@@ -64,13 +64,17 @@ export default {
     }),
     onSubmit() {
       console.log("submit!");
+    },
+    deleteRow(){
+      console.log(111)
     }
   },
   created() {},
   mounted() {
     let { grade_id } = this.$route.query;
+    // console.log(this.$route.query)
+    console.log(grade_id ,'grade_idgrade_idgrade_idgrade_idgrade_idgrade_idgrade_idgrade_idgrade_idgrade_idgrade_idgrade_id')
     this.student(grade_id);
-    // console.log(this.studentlist)
   }
 };
 </script>
