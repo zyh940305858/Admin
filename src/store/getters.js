@@ -8,6 +8,7 @@ const getters = {
   studentlist: state => state.exam.studentlist,
   getlist: state => state.exam.getlist,
   examType: state => state.exam.examType,
-  subject: state => state.exam.subject
+  subject: state => state.exam.subject,
+  search: state => state.exam.search
 }
 export default getters

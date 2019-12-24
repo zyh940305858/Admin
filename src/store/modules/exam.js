@@ -1,4 +1,4 @@
-import { exam, student, getlist, examType, subject} from '@/api/exam'
+import { exam, student, getlist, examType, subject, search} from '@/api/exam'
 
 const state = {
   examlist: [],
@@ -23,7 +23,10 @@ const mutations = {
   },
   student: (state, payload)=>{
     state.studentlist = payload
-  }
+  },
+  upmsearch: (state, payload)=>{
+    state.examlist = payload
+  },
 }
 const actions = {
   async exam({ commit }, payload) {
@@ -50,6 +53,12 @@ const actions = {
   async student({ commit }, payload) {
     const res = await student(payload)
     commit('student', res.exam)
+    // console.log('===========student======',res.exam)
+  },
+  async actionsearch({ commit }, payload) {
+    // console.log(payload.subject_text);
+    const res = await search({exam_id:payload.exam_name,subject_id:payload.subject_text})
+    commit('upmsearch', res.data)
     // console.log('===========student======',res.exam)
   }
 }

@@ -98,10 +98,11 @@ export default {
     ...mapActions({
       getExamlist: "exam/getExamlist",
       gettypelist: "exam/gettypelist",
-      getsublist: "exam/getsublist"
+      getsublist: "exam/getsublist",
+      actionsearch: "exam/actionsearch"
     }),
     onSubmit() {
-      console.log("submit!");
+      this.actionsearch(this.from)
     },
     deleteRow(ind, index) {
       console.log(ind);

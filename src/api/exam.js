@@ -26,6 +26,15 @@ export function examType(){
   })
 }
 
+//查询考试
+export function search(params){
+  return request({
+    url:'/exam/questions/condition',
+    method: 'get',
+    params
+  })
+}
+
 //获取全部课程
 export function subject(){
   return request({
