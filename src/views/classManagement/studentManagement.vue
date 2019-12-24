@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2019-12-19 17:03:51
- * @LastEditTime : 2019-12-23 08:54:55
+ * @LastEditTime : 2019-12-24 20:48:48
  * @LastEditors  : Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Admin\src\views\classManagement\ClassroomManagement.vue
@@ -9,15 +9,16 @@
 <template>
   <div class="classContainer">
     <p>学生管理</p>
-      <!-- 搜索栏组件 -->
+    <!-- 搜索栏组件 -->
     <SearchBar
       :getOverClassStateList="getOverClassStateList"
       :getClassAndGradeStateList="getClassAndGradeStateList"
+      :getOverStudentStateList="getOverStudentStateList"
     />
     <ul>
       <!-- 数据组件 -->
-      <List :getOverStudentStateList="getOverStudentStateList " />
-      <Pagination/>
+      <List :getOverStudentStateList="getOverStudentStateList.slice(startCount,endCount) " />
+      <Pagination @firstListLength="firstListLength" @pagVal="pagVal"/>
     </ul>
   </div>
 </template>
@@ -25,19 +26,24 @@
 /**
  * @description: 引入弹框组件
  * @param {type}
- * @return: 
+ * @return:
  */
 import List from "../../components/ClassManagement/student/list";
 import SearchBar from "../../components/ClassManagement/student/searchBar";
 import Pagination from "../../components/ClassManagement/student/pagination";
-// import Alert from "../../components/ClassManagement/classroom/alert";
 import { mapState, mapMutations, mapGetters, mapActions } from "vuex";
 export default {
+  data() {
+    return {
+      startCount:0,
+      endCount:10,
+      cod:null
+    }
+  },
   components: {
     List,
     SearchBar,
     Pagination
-    //  Alert
   },
   computed: {
     ...mapState({
@@ -50,6 +56,14 @@ export default {
     })
   },
   methods: {
+    firstListLength(firstListLength){
+this.endCount=firstListLength;
+this.cod=firstListLength
+    },
+    pagVal(pagVal){
+this.startCount=pagVal*this.cod
+this.endCount=pagVal*this.cod+this.cod
+    },
     ...mapActions({
       getOverStudentActionsList: "classManagement/getOverStudentActionsList",
       getOverClassroomActionsList:
@@ -61,7 +75,10 @@ export default {
     this.getOverStudentActionsList();
     this.getOverClassroomActionsList();
     this.getClassAndGradeActionsList();
-  }
+  },
+  updated() {
+
+  },
 };
 </script>
 <style lang="scss" scoped>

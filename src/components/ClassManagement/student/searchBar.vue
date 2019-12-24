@@ -1,15 +1,23 @@
+<!--
+ * @Author: your name
+ * @Date: 2019-12-22 20:36:54
+ * @LastEditTime : 2019-12-25 07:31:29
+ * @LastEditors  : Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \Admin\src\components\ClassManagement\student\searchBar.vue
+ -->
 <template>
   <div>
     <el-form :model="form">
       <el-input
-        type="age"
-        v-model.number="numberValidateForm.age"
+        type="student_name"
+        v-model.number="numberValidateForm.student_name"
         autocomplete="off"
         placeholder="请输入学生姓名"
       ></el-input>
 
       <el-form-item>
-        <el-select v-model="form.classroom" placeholder="请选择教室号">
+        <el-select v-model="form.grade_name" placeholder="请选择教室号">
           <el-option
             v-for="(item,index) in getOverClassStateList"
             :key="index"
@@ -20,7 +28,7 @@
       </el-form-item>
 
       <el-form-item>
-        <el-select v-model="form.classAndGrade" placeholder="班级名">
+        <el-select v-model="form.room_text" placeholder="班级名">
           <el-option
             v-for="(item,index) in getClassAndGradeStateList"
             :key="index"
@@ -29,7 +37,7 @@
           ></el-option>
         </el-select>
       </el-form-item>
-      <button>搜索</button>
+      <button @click="seek">搜索</button>
       <button>重置</button>
     </el-form>
   </div>
@@ -39,25 +47,31 @@
 import { mapState, mapMutations, mapGetters, mapActions } from "vuex";
 
 export default {
-  props: ["getOverClassStateList", "getClassAndGradeStateList"],
+  props: ["getOverClassStateList", "getClassAndGradeStateList","getOverStudentStateList"],
   data() {
     return {
       form: {
-        classroom: "",
-        classAndGrade: ""
+        grade_name: "",
+        room_text: ""
       },
       numberValidateForm: {
-        age: ""
+        student_name: ""
       }
     };
   },
   computed: {
-    ...mapState({})
   },
   methods: {
-    ...mapActions({}),
-    created() {}
-  }
+    seek(){
+      // console.log(this.form.grade_name,this.form.room_text,this.numberValidateForm.student_name);
+      0
+    }
+  },
+  created() {
+  },
+  updated() {
+   
+  },
 };
 </script>
 
