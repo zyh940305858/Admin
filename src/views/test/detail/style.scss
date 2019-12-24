@@ -9,7 +9,7 @@
 }
 
 
-.test-check-detail .test-check-detail-main .test-check-detail-content:nth-child(1) {
+.test-check-detail .test-check-detail-main .test-check-detail-list {
     flex: 1;
     background: rgb(255, 255, 255);
     padding: 24px;
@@ -17,10 +17,10 @@
     border-radius: 10px;
 }
 
-.test-check-detail .test-check-detail-main .test-check-detail-content:nth-child(2) {
+.test-check-detail .test-check-detail-main .test-check-detail-answer {
     width: 500px;
     background: rgb(255, 255, 255);
     padding: 24px;
-    margin: 0px 0px 20px;
+    margin: 0px 0px 0px 20px;
     border-radius: 10px;
 }
