@@ -33,10 +33,9 @@ const mutations = {
         state.allShenFen=Array.from(new Set(names))
 
          //身份
-         console.log(state.examS)
         let shenfen=state.examS.map(item=>item.identity_text)
         state.shenfen=Array.from(new Set(shenfen))
-        console.log(state.shenfen)
+
     },
 
     //展示身份数据
@@ -81,6 +80,7 @@ const actions = {
     const res = await authorAll()
     // console.log('444444',res)
     commit('SET_EXAMS',res.data)
+    console.log(res.date, '8888888888888')
   },
   //获取身份数据
   async authorIDentity({commit}){
@@ -95,7 +95,7 @@ const actions = {
   //获取身份和api权限关系数据
   async authorGuanXi({commit}){
     const res = await authorGuanXi();
-    // console.log(res,'athers')
+    console.log(res,'athers')
     commit('SET_GuanXi',res.data)
   },
   //展示身份和视图权限关系

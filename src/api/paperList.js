@@ -1,45 +1,49 @@
-/*
- * @Author: your name
- * @Date: 2019-12-20 14:46:44
- * @LastEditTime : 2019-12-20 14:53:52
- * @LastEditors  : Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: \Admin\src\api\examManagement.js
- */
 import request from '@/utils/request'
 
-export function getPaperList(params) {
-  return request({
-    url: '/user/user',
-    method: 'get',
-    params
-  })
+//获取所有用户信息
+export function authorAll() {
+    return request({
+      url: '/user/user',
+      method: 'get'
+    })
 }
-export function getIdentityList(params) {
-  return request({
-    url: '/user/identity',
-    method: 'get',
-    params
-  })
+  
+//获取身份信息
+export function authorIDentity() {
+    return request({
+        url: '/user/identity',
+        method: 'get'
+    })
 }
-export function getAuthorityList(params) {
+
+//获取api接口权限数据
+export function authorityApi(){
   return request({
     url: '/user/api_authority',
-    method: 'get',
-    params
+    method: 'get'
   })
 }
 
-export function getRelationList(params) {
+//获取身份和api权限关系数据
+export function authorGuanXi(){
   return request({
     url: '/user/identity_api_authority_relation',
-    method: 'get',
-    params
+    method: 'get'
   })
-}export function getViewList(params) {
+}
+
+//获取视图权限数据
+export function viesQuanXI(){
   return request({
-    url: '/user/identity_view_authority_relation',
-    method: 'get',
-    params
+    url: "/user/view_authority",
+    method: 'get'
+  })
+}
+
+//展示身份和视图权限关系
+export function authorViews(){
+  return request({
+    url: '/user/identity_api_authority_relation',
+    method: 'get'
   })
 }

@@ -1,103 +1,237 @@
-<!--
- * @Author: your name
- * @Date: 2019-12-19 18:08:48
- * @LastEditTime : 2019-12-22 21:05:42
- * @LastEditors  : Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: \Admin\src\views\examManagement\paperList.vue
- -->
 <template>
-    <div class="box">
-        <div class="rightlist">
-            <h2>用户展示</h2>
-             <div v-for="(item,index) in navlist" :key="index"> 
-               <span @click="handle(index)">{{item}}</span>
-             </div>
-             <div v-if="count==0">
-                 <el-table
-                    :data="paperList[count]" stripe style="width: 100%"><el-table-column prop="user_name" label="用户名" width="180"></el-table-column>
-                    <el-table-column prop="user_pwd" label="密码"></el-table-column>
-                    <el-table-column prop="identity_text" label="身份"></el-table-column>
-                 </el-table>
-             </div>
-             <div v-if="count==1">
-                 <el-table
-                    :data="paperList[count]" stripe style="width: 100%"><el-table-column prop="identity_text" label="身份名称"></el-table-column> 
-                 </el-table>
-             </div>
-              <div v-if="count==2">
-                 <el-table
-                    :data="paperList[count]" stripe style="width: 100%"><el-table-column prop="api_authority_text" label="api权限名称"></el-table-column>
-                    <el-table-column prop="api_authority_url" label="api权限url" ></el-table-column>
-                    <el-table-column prop="api_authority_method" label="api权限方法"></el-table-column>
-                 </el-table>
-             </div>
-              <div v-if="count==3">
-                 <el-table
-                    :data="paperList[count]" stripe style="width: 100%"><el-table-column prop="identity_text" label="身份名称"></el-table-column>
-                    <el-table-column prop="api_authority_text" label="api权限名称"></el-table-column>
-                    <el-table-column prop="api_authority_url" label="api权限url"></el-table-column>
-                    <el-table-column prop="api_authority_method" label="api权限方法"></el-table-column>
-                 </el-table>
-             </div>
-              <div v-if="count==4">
-                 <el-table
-                    :data="paperList[count]" stripe style="width: 100%"><el-table-column prop="identity_text" label="身份"></el-table-column>
-                    <el-table-column prop="view_authority_text" label="视图名称"></el-table-column>
-                    <el-table-column prop="view_id" label="视图id"></el-table-column>
-                 </el-table>
-             </div>
- 
+  <div class="box">
+    <p class="title">用户展示</p>
+    <el-tabs v-model="activeName" type="card" @tab-click="handleClick">
+      <el-tab-pane label="用户数据" name="first">  <!--用户数据-->
+        <h4 class="first-title">用户数据</h4>
+        
+        <div class="first-box">
+          <el-table :data="examS.slice((currentPage-1)*pagesize,currentPage*pagesize)"  style="width: 100%">
+            <el-table-column prop="user_name" label="用户名" width="180"></el-table-column>
+            <el-table-column prop="user_pwd" label="密码" width="520"></el-table-column>
+            <el-table-column prop="identity_text" label="身份"></el-table-column>
+          </el-table>
+
+          <!-- 分页 -->
+          <el-pagination layout="prev, pager, next" @current-change="current_change"  @size-change="handleSizeChange"
+            :total="+userlength"
+            :page-size="pagesize"
+            background
+          ></el-pagination>
         </div>
-    </div>
+
+      </el-tab-pane>
+
+      <el-tab-pane label="身份数据" name="second"> <!--身份数据-->
+        <h6 class="second-title">身份数据</h6>
+  
+        <div class="second-box">
+          <el-table :data="userNPID.slice((currentPage-1)*pagesize,currentPage*pagesize)" style="width: 100%">
+            <el-table-column prop="identity_text" label="身份名称" width="180" ></el-table-column>
+          </el-table>
+
+          <!-- 分页 -->
+          <el-pagination layout="prev, pager, next" @current-change="current_change"  @size-change="handleSizeChange"
+            :total="+authorlenght"
+            :page-size="pagesize"
+            background
+          ></el-pagination>
+
+        </div>
+      </el-tab-pane>
+
+      <el-tab-pane label="api接口权限数据" name="third"> <!--api接口权限数据-->
+        <h6 class="third-title">api接口权限数据</h6>
+        <el-table :data="apiALL.slice((currentPage-1)*pagesize,currentPage*pagesize)" style="width: 100%">
+          <el-table-column prop="api_authority_text" label="api权限名称" width="180"></el-table-column>
+          <el-table-column prop="api_authority_url" label="api权限url" width="520"></el-table-column>
+          <el-table-column prop="api_authority_method" label="api权限方法"></el-table-column>
+        </el-table>
+
+        <!-- 分页 -->
+          <el-pagination layout="prev, pager, next" @current-change="current_change"  @size-change="handleSizeChange"
+            :total="+apilength"
+            :page-size="pagesize"
+            background
+          ></el-pagination>
+      </el-tab-pane>
+
+      <el-tab-pane label="身份和api接口数据" name="fourth"> <!--身份和api接口数据-->
+        <h6 class="fourth-title">身份和api接口数据</h6>
+        <el-table :data="allGuanXi.slice((currentPage-1)*pagesize,currentPage*pagesize)" style="width: 100%">
+          <el-table-column prop="identity_text" label="身份名称" width="180"></el-table-column>
+          <el-table-column prop="api_authority_text" label="api权限名称" width="200"></el-table-column>
+          <el-table-column prop="api_authority_url" label="api权限url" width="280"></el-table-column>
+          <el-table-column prop="api_authority_method" label="api权限方法"></el-table-column>
+        </el-table>
+
+        <!-- 分页 -->
+        <el-pagination layout="prev, pager, next" @current-change="current_change"  @size-change="handleSizeChange"
+          :total="+allGuanXilength"
+          :page-size="pagesize"
+          background
+        ></el-pagination>
+      </el-tab-pane>
+
+      <el-tab-pane label="视图接口数据" name="fifth"> <!--视图接口数据-->
+        <h6 class="fifth-title">视图接口数据</h6>
+         <el-table :data="allViewsQX.slice((currentPage-1)*pagesize,currentPage*pagesize)" style="width: 100%">
+          <el-table-column prop="view_authority_text" label="视图权限名称" width="180"></el-table-column>
+          <el-table-column prop="view_id" label="视图id" width="200"></el-table-column>
+        </el-table>
+
+        <!-- 分页 -->
+        <el-pagination layout="prev, pager, next" @current-change="current_change"  @size-change="handleSizeChange"
+          :total="+allViewsQXlength"
+          :page-size="pagesize"
+          background
+        ></el-pagination>
+      </el-tab-pane>
+
+      <el-tab-pane label="身份和视图权限关系" name="sixth"> <!--身份和视图权限关系-->
+         <h6 class="sixth-title">身份和视图权限关系</h6>
+         <el-table :data="allAuthorViews.slice((currentPage-1)*pagesize,currentPage*pagesize)" style="width: 100%">
+              <el-table-column prop="identity_text" label="身份" width="180"></el-table-column>
+              <el-table-column prop="api_authority_text" label="视图名称" width="200"></el-table-column>
+              <el-table-column prop="api_authority_method" label="视图id" width="280"></el-table-column>
+          </el-table>
+
+        <!-- 分页 -->
+        <el-pagination layout="prev, pager, next" @current-change="current_change"  @size-change="handleSizeChange"
+          :total="+allAuthorViewslength"
+          :page-size="pagesize"
+          background
+        ></el-pagination>
+      </el-tab-pane>
+    </el-tabs>
+    
+  </div>
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
-import Parper from '../class/paper.vue'
+import { mapState, mapActions } from "vuex";
 export default {
-    data(){
-        return {
-          navlist:["用户数据","身份数据","api接口关系","身份和api接口关系","身份和视图权限关系"],
-          datlist:[],
-          count:0
-          
-        }
-    },
-    components:{
+  data() {
+    return {
+      activeName: "first",
+      // total: 1000, //默认数据总数
+      pagesize: 5, //每页的数据条数
+      currentPage: 1 //默认开始页面
+    };
+  },
+  computed: {
+    ...mapState({
+      //用户信息数据的长度
+      examS:state => state.paperList.examS,
+      userNPID:state => state.paperList.userNPID,
       
+       userlength: state => state.paperList.userlength,
+      authorlenght: state => state.paperList.authorlenght, //身份数据的长度
+      apiALL: state => state.paperList.apiALL, //所有api接口权限数据
+      apilength: state => state.paperList.apilength, //所有api接口权限数据长度
+      allGuanXi: state => state.paperList.allGuanXi, //获取身份和api权限关系数据
+      allGuanXilength: state => state.paperList.allGuanXilength, //身份和api权限关系数据长度
+      allAuthorViews: state => state.paperList.allAuthorViews, //展示身份和视图权限关系的所有数据
+      allAuthorViewslength: state => state.paperList.allAuthorViewslength, //所以身份和视图权限关系数据的长度
+      allViewsQX: state => state.paperList.allViewsQX, //获取视图权限数据的所有数据
+      allViewsQXlength: state => state.paperList.allViewsQXlength  //获取视图权限数据的所有数据的长度
+    })
+  },
+  methods: {
+    ...mapActions({
+      authorAll: "paperList/authorAll",
+      authorIDentity: "paperList/authorIDentity",
+      authorityApi: "paperList/authorityApi",
+      authorGuanXi: "paperList/authorGuanXi",
+      authorViews: "paperList/authorViews",
+      viesQuanXI: "paperList/viesQuanXI"
+    }),
+    handleClick(){
+      console.log('1')
     },
-    computed:{
-        ...mapState({
-            paperList:store=>store.parper.PaperList,
-            // identityList:store=>store.parper.IdentityList,
-            // authorityList:store=>store.parper.AuthorityList,
-            // relationList:store=>store.parper.RelationList,
-            // viewList:store=>store.parper.ViewList
-        })
+    current_change:function(currentPage){
+        this.currentPage = currentPage;
     },
-    methods:{
-        ...mapActions({
-            getPaperList:"parper/getPaperList",
-            getIdentityList:"parper/getIdentityList",
-            getAuthorityList:"parper/getAuthorityList",
-            getRelationList:"parper/getRelationList",
-            getViewList:"parper/getViewList"
-
-        }),
-        handle(index){
-            this.count=index
-           console.log(this.paperList)
-        }
+    handleSizeChange: function (size) {
+        this.pagesize = size;
     },
-    mounted(){
-        this.getPaperList()
-        this.getIdentityList()
-        this.getAuthorityList()
-        this.getRelationList()
-        this.getViewList()
-    }
-}
+  },
+  mounted() {
+    this.authorAll();
+    this.authorIDentity();
+    this.authorityApi();
+    this.authorGuanXi();
+    this.authorViews();
+    this.viesQuanXI()
+  }
+};
 </script>
 
-
+<style lang="scss" scoped>
+.box {
+  margin-left: 20px;
+  position: relative;
+}
+.box .title {
+  font-size: 20px;
+}
+.first-title {
+  font-size: 20px;
+  position: absolute;
+  top: -42px;
+}
+.first-ulto {
+  display: flex;
+  background: #eeeeee;
+  line-height: 50px;
+  margin-top: 40px;
+  li:nth-child(1) {
+    flex: 2;
+  }
+  li:nth-child(2) {
+    flex: 7;
+  }
+  li:nth-child(3) {
+    flex: 4;
+  }
+}
+.first-ult {
+  display: flex;
+  border-bottom: 1px solid #eeeeee;
+  line-height: 25px;
+  li:nth-child(1) {
+    flex: 2;
+  }
+  li:nth-child(2) {
+    flex: 7;
+  }
+  li:nth-child(3) {
+    flex: 4;
+  }
+}
+.first-box {
+  margin-top: 50px;
+}
+.second-box {
+  margin-top: 50px;
+}
+.second-title {
+  font-size: 20px;
+  position: absolute;
+  top: -42px;
+}
+.second-ult {
+  display: flex;
+  border-bottom: 1px solid #eeeeee;
+  line-height: 25px;
+  li:nth-child(1) {
+    flex: 2;
+  }
+  li:nth-child(2) {
+    flex: 7;
+  }
+  li:nth-child(3) {
+    flex: 4;
+  }
+}
+</style>

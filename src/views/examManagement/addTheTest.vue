@@ -1,261 +1,269 @@
-<!--
- * @Author: your name
- * @Date: 2019-12-19 16:56:50
- * @LastEditTime : 2019-12-20 14:04:51
- * @LastEditors  : Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: \Admin\src\views\management\index.vue
- -->
 <template>
     <div class="box">
-        <div class="rightlist">
-            <h2>添加用户</h2>
-            <div class="wrapper">
-                <div class="cont">
-                     <div class="contentlist">
-                        <div class="ass">
-                            <span class="addUser">添加用户</span>
-                            <span class="updateUser">更新用户</span>
-                         </div>
-                        <div class="ass">
-                            <input type="text" class="ant-input" placeholder="请输入用户名">
-                        </div>
-                        <div class="ass">
-                            <input type="text" class="ant-input" placeholder="请输入密码">
-                        </div>
-                        <div class="ass">
-                            <div  class="selection" style="display:block; user-select:none">请选择身份id</div>
-                        </div>
-                        <div class="ass">
-                            <button class="true">确定</button>
-                            <button class="reset">重置</button>
-                        </div>
-                     </div>
+        <p>添加用户</p>
+        <div class="con">
+            <div class="one">
+              <button @click="addAuthor" class="addAuthor" style="color:#0139FD;border:1px solid #0139FD;height:32px;width:88px; line-height: 11px;font-size:14px" >添加用户</button>
+              <button @click="gNew" class="newAuthor">更新用户</button>
+              <el-form :model="ruleForm" status-icon ref="ruleForm" class="demo-ruleForm">
+                <el-tabs :tab-position="tabPosition" style="display:none" ref="select">
+                  <el-select v-model="value" placeholder="请选择身份id">
+                      <el-option v-for="item in userNPID" :key="item.identity_text" :value="item.identity_text"></el-option>
+                  </el-select>
+                </el-tabs>
+                <el-form-item prop="pass">
+                  <el-input type="text" v-model="ruleForm.pass" autocomplete="off" placeholder="请输入用户名"></el-input>
+                </el-form-item>
+                <el-form-item prop="checkPass">
+                  <el-input type="password" v-model="ruleForm.checkPass" autocomplete="off" placeholder="请输入密码"></el-input>
+                </el-form-item>
+                <el-tabs :tab-position="tabPosition">
+                  <el-select v-model="ruleForm.values" placeholder="请选择">
+                      <el-option v-for="item in userNPID" :key="item.identity_text" :value="item.identity_text"></el-option>
+                  </el-select>
+                </el-tabs>
+                <el-form-item>
+                  <el-button class="true" type="primary" @click="submitForm()">确定</el-button>
+                  <el-button class="reset" @click="resetForm('ruleForm')">重置</el-button>
+                </el-form-item>
+              </el-form>
+            </div>
+            <div class="two">
+              <button class="addAuthor" style="color:#0139FD;border:1px solid #0139FD;height:32px;width:88px; line-height: 11px;font-size:14px">添加身份</button>
+              <el-form :model="numberValidateForm" ref="numberValidateForm" class="demo-ruleForm demo-two">
+                <el-form-item prop="author">
+                  <el-input type="author" v-model.number="numberValidateForm.author" autocomplete="off" placeholder="请输入身份名称"></el-input>
+                </el-form-item>
+                <el-form-item>
+                  <el-button class="true" type="primary" @click="submitFormTWO()">确定</el-button>
+                  <el-button class="reset" @click="resetFormTWO('numberValidateForm')">重置</el-button>
+                </el-form-item>
+              </el-form>
 
-                      <div class="contentlist">
-                        <div class="ass">
-                            <span class="addUser">添加用户</span>
-                           
-                         </div>
-                        <div class="ass">
-                            <input class="ant-input" type="text" placeholder="请输入身份名称">
-                        </div class="ass">
-                       
-                        <div class="ass">
-                            <button class="true">确定</button>
-                            <button class="reset">重置</button>
-                        </div>
-                     </div>
-                      <div class="contentlist">
-                        <div class="ass">
-                            <span class="open" style="display:inline-block; border:1px solid #0139FD;">添加api接口权限</span>
-                            
-                         </div>
-                        <div class="ass">
-                            <input type="text" class="ant-input" placeholder="请输入api接口权限名称">
-                        </div>
-                        <div class="ass">
-                            <input type="text" class="ant-input" placeholder="请输入api接口权限url">
-                        </div>
-                        <div class="ass">
-                            <input type="text" class="ant-input" placeholder="请输入api接口权限方法">
-                        </div>
-                        <div class="ass">
-                            <button class="true">确定</button>
-                            <button class="reset">重置</button>
-                        </div>
-                     </div>
-                      <div class="contentlist">
-                        <div class="ass">
-                            <span  class="open" style="display:inline-block; border:1px solid #0139FD;">添加视图接口权限</span>
-                        
-                         </div>
-                        
-                        <div class="ass">
-                            <div class="selection" style="display:block; user-select:none">请选择身份id</div>
-                        </div>
-                        <div class="ass">
-                            <button class="true">确定</button>
-                            <button class="reset">重置</button>
-                        </div>
-                     </div>
-                      <div class="contentlist">
-                        <div class="ass">
-                            <span  class="open" style="display:inline-block; border:1px solid #0139FD;">给身份设置api接口权限</span>
-                         
-                         </div>
-                        
-                        <div class="ass">
-                            <div  class="selection" style="display:block; user-select:none">请选择身份id</div>
-                        </div>
-                         <div class="ass">
-                            <div  class="selection" style="display:block; user-select:none">请选择api身份权限</div>
-                        </div>
-                        <div class="ass">
-                            <button class="true">确定</button>
-                            <button class="reset">重置</button>
-                        </div>
-                     </div>
-
-                      <div class="contentlist">
-                        <div class="ass">
-                            <span class="open" style="display:inline-block; border:1px solid #0139FD;">给身份设置视图权限</span>
-                         
-                         </div>
-                        
-                        <div class="ass">
-                            <div  class="selection" style="display:block; user-select:none">请选择身份id</div>
-                        </div>
-                         <div class="ass">
-                            <div  class="selection" style="display:block; user-select:none">请选择视图权限id</div>
-                        </div>
-                        <div class="ass">
-                            <button class="true">确定</button>
-                            <button class="reset">重置</button>
-                        </div>
-                     </div>
-                </div>
-                
+            </div>
+            <div class="three">
+              <button class="addAuthor" style="color:#0139FD;border:1px solid #0139FD;font-size:14px">添加api接口权限</button>
+              <AddApiQuanXi/>
+            </div>
+            <div class="four">
+               <button class="addAuthor" style="color:#0139FD;border:1px solid #0139FD;font-size:14px">添加视图接口权限</button>
+               <el-form :model="ruleForm" status-icon ref="ruleForm" class="demo-ruleForm">
+                  <el-tabs :tab-position="tabPosition">
+                    <el-select v-model="ruleForm.valuesF" placeholder="请选择身份id">
+                        <el-option v-for="(item,index) in allViewsQX" :key="index" 
+                        :label="item.view_authority_text"
+                        :value="item.view_authority_id" 
+                        ></el-option>
+                    </el-select>
+                  </el-tabs>
+                  <el-form-item>
+                    <el-button class="true" type="primary" @click="submitFormF()">确定</el-button>
+                    <el-button class="reset" @click="resetFormF('ruleForm')">重置</el-button>
+                  </el-form-item>
+                </el-form>
+            </div>
+            <div class="five">
+              <button class="addAuthor" style="color:#0139FD;border:1px solid #0139FD;font-size:14px">给身份设置api接口权限</button>
+              <el-form :model="ruleForm" status-icon ref="ruleForm" class="demo-ruleForm">
+                  <el-tabs :tab-position="tabPosition">
+                    <el-select v-model="valuesFive" placeholder="请选择身份id">
+                        <el-option v-for="(item,index) in shenfen" :key="index" :value="item"></el-option>
+                    </el-select>
+                  </el-tabs>
+                  <el-tabs :tab-position="tabPosition">
+                    <el-select v-model="valuesFiveTwo"  style="color:#0139FD;border:1px solid #0139FD;font-size:14px" placeholder="请选择api接口权限">
+                        <el-option v-for="item in allGuanXi" :key="item.identity_api_authority_relation_id" :value="item.api_authority_text"></el-option>
+                    </el-select>
+                  </el-tabs>
+                  <el-form-item>
+                    <el-button class="true" type="primary" @click="submitFormFive('ruleForm')">确定</el-button>
+                    <el-button class="reset" @click="resetFormFive('ruleForm')">重置</el-button>
+                  </el-form-item>
+                </el-form>
+            </div>
+            <div class="six">
+              <button class="addAuthor" style="color:#0139FD;border:1px solid #0139FD">给身份设置视图权限</button>
+              <el-form :model="ruleForm" status-icon ref="ruleForm" class="demo-ruleForm">
+                  <el-tabs :tab-position="tabPosition">
+                    <el-select v-model="valuesSix" placeholder="请选择身份id">
+                        <el-option v-for="(item,index) in shenfen" :key="index" :value="item"></el-option>
+                    </el-select>
+                  </el-tabs>
+                  <el-tabs :tab-position="tabPosition">
+                    <el-select v-model="valuesSixTwo" placeholder="请选择视图权限id">
+                        <el-option v-for="(item,index) in allViewsQX" :key="index" :value="item.view_authority_text"></el-option>
+                    </el-select>
+                  </el-tabs>
+                  <el-form-item>
+                    <el-button class="true" type="primary" @click="submitFormSix('ruleForm')">确定</el-button>
+                    <el-button class="reset" @click="resetFormSix('ruleForm')">重置</el-button>
+                  </el-form-item>
+                </el-form>
             </div>
         </div>
-        
     </div>
 </template>
 
 <script>
-
+import { addAuthor , addYongHu , authorityView , setIdentityApi , setIdentityView} from '@/api/addpaperList'
+import {mapState,mapActions,mapMutations} from 'vuex'
+import AddApiQuanXi from '@/components/addApiQuanXi/index'
 export default {
-    data(){
-        return {
-
+  data() {
+      return {
+        buttons:['添加用户','更新用户'],
+        input: '',
+        tabPosition: 'top',
+        value: '',
+        valuesFour: '',
+        valuesFive: '',
+        valuesFiveTwo: '',
+        valuesSix: '',
+        valuesSixTwo: '',
+        ruleForm: {
+          pass: '',
+          checkPass: '',
+          age: '',
+          valuesF: '',
+          values: '',
+        },
+        numberValidateForm: {
+          author: ''
         }
-    }
+      };
+  },
+  components:{AddApiQuanXi},
+  computed:{
+    ...mapState({
+      allShenFen: state => state.paperList.allShenFen,
+      shenfen: state => state.paperList.shenfen,
+      allViewsQX: state => state.paperList.allViewsQX,
+      allGuanXi: state => state.paperList.allGuanXi,
+      userNPID: state => state.paperList.userNPID
+    })
+  },
+  methods:{
+      ...mapActions({
+        authorAll: 'paperList/authorAll',
+        viesQuanXI: "paperList/viesQuanXI",
+        authorGuanXi: "paperList/authorGuanXi",
+        authorIDentity: 'paperList/authorIDentity'
+      }),
+      addAuthor(){ // one的事件
+        this.$refs.select.$el.style="display:none"
+        document.querySelector('.newAuthor').style="none"
+      },
+      gNew(){ // one的事件
+        this.$refs.select.$el.style="display:block"
+        document.querySelector('.newAuthor').style="color:#0139FD;border:1px solid #0139FD"
+        document.querySelector('.addAuthor').style="none"        
+      },
+      submitForm() {// one的事件 
+        console.log(this.shenfen,'322333333')
+        let user_name = this.ruleForm.pass;
+        let user_pwd = this.ruleForm.checkPass;
+        //密码必须为 一个大写字母+一个小写字母+一个数字+一个特殊字符 == 长度必须大于6
+        addYongHu({ user_name: user_name, user_pwd: user_pwd }).then(res => {
+          console.log(res,"==========----------??");
+        })
+      },
+      resetForm(formName) {// one的事件
+        this.$refs[formName].resetFields();
+        this.ruleForm.pass=''
+        this.ruleForm.checkPass=''
+        this.ruleForm.values=''
+      },
+      submitFormTWO() { //two的事件  添加身份
+        addAuthor({ identity_text:this.numberValidateForm.author })
+      },
+      resetFormTWO(formName) {//two的事件
+        this.$refs[formName].resetFields();
+      },
+      submitFormF() { //four的事件
+        let str = this.ruleForm.valuesF
+        let data = this.allViewsQX.filter(item => item.view_authority_id == str)
+        // console.log(data,'data')
+        // console.log(data[0].view_authority_text,'view_authority_text')
+        // console.log(data[0].view_authority_id,"view_authority_id")
+        
+        authorityView({
+          view_authority_text: data[0].view_authority_text,
+          view_id: data[0].view_authority_id
+        }).then(res=>{
+          console.log(res,'dfghj')
+        })
+      },
+      resetFormF(formName) {//four的事件
+        this.$refs[formName].resetFields();
+        this.valuesF=''
+      },
+      submitFormFive(formName) { //five的事件
+        setIdentityApi({
+          identity_id: this.valuesFive,
+          api_authority_id: this.valuesFiveTwo
+        }).then(res=>{
+          console.log(res,'给身份设定api接口权限设置成功')
+        })
+      },
+      resetFormFive(formName) {//five的事件
+        this.$refs[formName].resetFields();
+        this.valuesFive=''
+        this.valuesFiveTwo=''
+      },
+      submitFormSix(formName) { //six的事件
+        setIdentityView({
+          identity_id: this.valuesSix,
+          view_authority_id: this.valuesSixTwo
+        }).then(res=>{
+          console.log(res,'给身份设定视图权限成功')
+        })
+      },
+      resetFormSix(formName) {//six的事件
+        this.$refs[formName].resetFields();
+        this.valuesSix=''
+        this.valuesSixTwo=''
+      }
+    },
+  async created(){
+    await this.authorAll()
+    await this.authorIDentity()
+    await this.viesQuanXI()
+    await this.authorGuanXi()
+    console.log(this.userNPID)
+  }
 }
 </script>
+
 <style lang="scss" scoped>
-*{
-    margin: 0;
-    padding: 0;
-}
 .box{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
+    margin-left: 20px;
     background: #F1F1F1;
 }
-h2{
-   
-    color: rgba(0, 0, 0, 0.85);
-    font-weight: 500;
-    margin-left: 25px;
-    padding: 20px 0;
-    font-size: 21px;
-    display: block;
-
-    margin-block-start: 12px;
-    margin-block-end: 12px;
-
-}
-.rightlist{
-    
-}
-.wrapper{
-   
+.con{
     width: 100%;
-    height: 100%;
-    border-left: 1px solid #ccc;
-    border-top: 1px solid #ccc;
-    margin: 24px;
-}
-.cont{
-    
     display: flex;
     flex-wrap: wrap;
-    .contentlist{
-        width: 33.3%;
-        height: 281px;
-        border-right: 1px solid #ccc;
+}
+.one,.two,.three,.four,.five,.six{
+    width: 33%;
+   
+     border-right: 1px solid #ccc;
+       border-top: 1px solid #ccc;
         border-bottom: 1px solid #ccc;
         border-radius: 5px;
         padding: 10px;
-        cursor: pointer;
-        .ass{
-            margin-bottom: 20px;
-            display: flex;
-        }
-        .addUser{
-            width: 88px;
-            height: 32px;
-            padding: 0 15px;
-            line-height: 32px;
-            border:1px solid #0139FD;
-            display: inline-block;
-            font-size: 14px;
-            display: inline-block;
-            background: #fff;
-            color:  #0139FD
-        }
-        .updateUser{
-            width: 88px;
-            height: 32px;
-            line-height: 32px;
-            color: rgba(0, 0, 0, 0.65);
-            display: inline-block;
-
-            cursor: pointer;
-            border: 1px solid #d9d9d9;
-            font-size: 14px;
-            background: #fff;
-            padding: 0 15px;
- 
-        }
-    }
 }
-.selection{
-   
-   
-    color: #bfbfbf;
-    line-height: 20px;
-    height: 20px;
-    max-width: 100%;
- 
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    text-align: left;
+.addAuthor,.newAuthor{
+  background: #ffff;
+  border: 1px solid #eeeeee;
+  line-height: 32px;
+  margin-left: 10px;
+  margin-top: 10px;
 }
-.true{
-    width: 111px;
-    height: 32px;
-    border-radius: 4px;
-    font-size: 14px;
-    color:white;
-    background: linear-gradient(-90deg,#4e75ff,#0139fd)!important;
-    border: none;
-    margin-right: 10px;
-}
-.reset{
-    width: 63px;
-    height: 32px;
-    line-height: 32px;
-   
-    font-weight: 400;
-    text-align: center;
-
-    cursor: pointer;
-    background-image: none;
-    border: 1px solid transparent;
-    white-space: nowrap;
-    padding: 0 15px;
-    font-size: 14px;
-    border-radius: 2px;  
-    user-select: none;
-    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.015);
-    color: rgba(0, 0, 0, 0.65);
-    background-color: #fff;
-    border-color: #d9d9d9;
+.demo-ruleForm{
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top:10px
 }
 .ant-input{
     
@@ -273,17 +281,36 @@ h2{
     border-radius: 2px;
     transition: all 0.3s;
 }
-.open{
+.true{
+   width: 111px;
     height: 32px;
-    text-align: center;
-    line-height: 32px;
-     padding: 0 15px;
+    border-radius: 4px;
     font-size: 14px;
-    border-radius: 2px;
-    background: #fff;
-    color:  #0139FD
+    color:white;
+    background: linear-gradient(-90deg,#4e75ff,#0139fd)!important;
+    border: none;
+    margin-right: 10px;
+    line-height:11px;
+     
+}
+.reset{
+  width: 63px;
+    height: 32px;
+    line-height: 11px;
+    font-weight: 400;
+    text-align: center;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 0 15px;
+    font-size: 14px;
+    border-radius: 2px;  
+    user-select: none;
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.015);
+    color: rgba(0, 0, 0, 0.65);
+    background-color: #fff;
+    border-color: #d9d9d9;
 }
 </style>
-
-
-
