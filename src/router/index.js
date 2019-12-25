@@ -86,7 +86,39 @@ export const constantRoutes = [
       meta: { title: '查看试题' }
     }]
   },
-
+  {
+    path: '/exam',
+    component: Layout,
+    redirect: '/exam/list',
+    meta: { title: '考试管理', icon: 'dashboard' },
+    children: [
+      {
+        path: 'list',
+        name: 'list',
+        component: () => import('@/views/exam/list/index'),
+        meta: { title: '试卷列表' }
+      }
+    ]
+  },
+  {
+    path: '/Marking',
+    component: Layout,
+    redirect: '/Marking/Mark',
+    meta: { title: '阅卷管理', icon: 'dashboard' },
+    children: [
+      {
+        path: '/Marking/Mark',
+        name: 'Mark',
+        component: () => import('@/views/Marking/Mark/index'),
+        meta: { title: '试卷列表' }
+      },
+      {
+        path: '/Marking/approval',
+        name: 'approval',
+        component: () => import('@/views/Marking/approval/index')
+      }
+    ]
+  },
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]
