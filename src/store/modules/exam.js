@@ -1,16 +1,22 @@
 import { exam, student, getlist, examType, subject, search} from '@/api/exam'
 
 const state = {
-  examlist: [],
-  studentlist: [],
-  examlist: [],
+  Effected: [],//待批班级
+  studentlist: [],//待批班级试卷列表
+  examlist: [],//考试管理考试列表
   typelist: [],//考试类型数据
-  sublist: []//课程数据
+  sublist: [],//课程数据
+  getGradId:null
 }
 
 const mutations = {
   updatalist: (state, payload) => {
-    state.examlist = payload
+    state.Effected = payload
+  },
+  upstudent: (state, payload)=>{
+    state.studentlist = payload
+    // console.log(state.studentlist)
+
   },
   uplist: (state, payload)=>{
     state.examlist = payload
@@ -21,18 +27,26 @@ const mutations = {
   upsublist: (state, payload) => {
     state.sublist = payload
   },
-  student: (state, payload)=>{
-    state.studentlist = payload
-  },
   upmsearch: (state, payload)=>{
     state.examlist = payload
   },
+  getGradId: (state, payload)=>{
+    state.getGradId=payload
+  },
 }
 const actions = {
-  async exam({ commit }, payload) {
+  //获取待批班级
+  async getexam({ commit }, payload) {
     const res = await exam(payload)
     commit('updatalist', res.data)
-    // console.log('===========exam=========',res.data)
+    // console.log('===========待批班级=========',res.data)
+  },
+  //待批班级试卷列表
+  async getstudent({ commit }, payload) {
+    // console.log(payload,"dddddddddddd")
+    const res = await student(payload)
+    commit('upstudent', res.exam)
+    // console.log('===========student======',res.exam)
   },
   async getExamlist({ commit }, payload){
     const res = await getlist(payload)
@@ -49,11 +63,6 @@ const actions = {
     const res = await subject()
     // console.log("=============getsublist========",res)
     commit('upsublist', res.data)
-  },
-  async student({ commit }, payload) {
-    const res = await student(payload)
-    commit('student', res.exam)
-    // console.log('===========student======',res.exam)
   },
   async actionsearch({ commit }, payload) {
     // console.log(payload.subject_text);

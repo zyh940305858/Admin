@@ -6,7 +6,7 @@
           <el-form :inline="true" :model="formInline" class="demo-form-inline">
             <el-form-item label="状态">
               <el-select v-model="formInline.status" placeholder="">
-                <el-option></el-option>
+                <el-option value></el-option>
               </el-select>
             </el-form-item>
             <el-form-item label="班级">
@@ -32,14 +32,14 @@
         <el-table :data="studentlist" style="width: 100%">
           <el-table-column prop="grade_name" label="班级" width="180"></el-table-column>
           <el-table-column prop="student_name" label="姓名" width="180"></el-table-column>
-          <el-table-column prop label="阅卷状态" width="180">未阅</el-table-column>
+          <el-table-column prop="status" label="阅卷状态" width="180"></el-table-column>
           <el-table-column prop="start_time" label="开始时间" width="180"></el-table-column>
           <el-table-column prop="end_time" label="结束时间" width="180"></el-table-column>
           <el-table-column prop="-" label="成材率">--------</el-table-column>
           <el-table-column label="操作">
             <template slot-scope="scope">
               <el-button
-                @click.native.prevent="deleteRow(scope.$index, examlist)"
+                @click.native.prevent="deleteRow(scope.$index, Effected)"
                 type="text"
                 size="small"
               >批卷</el-button>
@@ -64,14 +64,15 @@ export default {
   },
   computed: {
     ...mapState({
-      examlist: state => state.exam.examlist,
-      studentlist: state => state.exam.studentlist
+      Effected: state => state.exam.Effected,
+      studentlist: state => state.exam.studentlist,
+      getGradId: state => state.exam.getGradId
     })
   },
   methods: {
     ...mapActions({
-      exam: "exam/exam",
-      student: "exam/student"
+      getexam: "exam/getexam",
+      getstudent: "exam/getstudent"
     }),
     onSubmit() {
       console.log("submit!");
@@ -81,11 +82,9 @@ export default {
     }
   },
   created() {},
-  mounted() {
-    let { grade_id } = this.$route.query;
-    // console.log(this.$route.query)
-    console.log(grade_id ,'grade_idgrade_idgrade_idgrade_idgrade_idgrade_idgrade_idgrade_idgrade_idgrade_idgrade_idgrade_id')
-    this.student(grade_id);
+  async mounted() {
+    await this.getexam()
+    await this.getstudent(this.getGradId);
   }
 };
 </script>

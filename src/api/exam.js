@@ -44,10 +44,9 @@ export function subject(){
 }
 
 //学生待批试卷列表
-export function student(params){
+export function student(id){
   return request({
-    url:'/exam/student',
-    method: 'get',
-    params
+    url:`/exam/student?grade_id=${id}`,
+    method: 'get'
   })
 }

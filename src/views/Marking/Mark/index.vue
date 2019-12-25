@@ -3,16 +3,16 @@
     <h2 style="padding: 20px 0px 0px; margin-top: 10px;">待批班级</h2>
     <div class="ant-layout-content">
       <div class="ant-layout-content" style="background: rgb(255, 255, 255); padding: 24px; margin: 0px 0px 20px; border-radius: 10px;">
-          <el-table :data="examlist" style="width: 100%;" :header-cell-style="{background:'#F4F7F9'}">
+          <el-table :data="Effected" style="width: 100%;" :header-cell-style="{background:'#F4F7F9'}">
             <el-table-column prop="grade_name" label="班级名" width="180"></el-table-column>
             <el-table-column prop="subject_text" label="课程名" width="180"></el-table-column>
-            <el-table-column prop label="阅卷状态" width="180"></el-table-column>
+            <el-table-column prop="status" label="课程名" width="180"></el-table-column>
             <el-table-column prop="subject_text" label="课程名" width="180"></el-table-column>
             <el-table-column prop="room_text" label="成材率"></el-table-column>
             <el-table-column label="操作">
               <template slot-scope="scope">
                 <el-button
-                  @click.native.prevent="deleteRow(scope.$index, examlist)"
+                  @click.native.prevent="deleteRow(scope.$index, scope.row)"
                   type="text"
                   size="small"
                 >批卷</el-button>
@@ -35,7 +35,7 @@
   </div>
 </template>
 <script>
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapState,mapMutations} from "vuex";
 
 export default {
   props: {},
@@ -45,17 +45,20 @@ export default {
   },
   computed: {
     ...mapState({
-      examlist: state => state.exam.examlist
+      Effected: state => state.exam.Effected
     })
   },
   methods: {
     ...mapActions({
-      exam: "exam/exam"
+      getexam: "exam/getexam"
+    }),
+    ...mapMutations({
+      getGradId: "exam/getGradId"
     }),
     deleteRow(index, rows) {
-      let grade_id=rows[index].grade_id
-      this.$router.push({path:'/Marking/approval',query:{grade_id}})
-      // console.log(111)
+      // console.log(rows.grade_id)
+      this.getGradId(rows.grade_id)
+      this.$router.push('/Marking/approval')
     },
     handleSizeChange(val) {
         console.log(`每页 ${val} 条`);
@@ -65,8 +68,8 @@ export default {
       }
   },
   created() {},
-  mounted() {
-    this.exam();
+  async mounted() {
+    await this.getexam();
   }
 };
 </script>
