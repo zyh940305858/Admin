@@ -1,11 +1,14 @@
 <template>
   <div class="login-container">
+    <!-- 登录表单 -->
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
 
+      <!-- 标题 -->
       <div class="title-container">
         <h3 class="title">ADMIN CMS</h3>
       </div>
 
+      <!-- 用户名 -->
       <el-form-item prop="username">
         <span class="svg-container">
           <svg-icon icon-class="user" />
@@ -21,6 +24,7 @@
         />
       </el-form-item>
 
+      <!-- 密码 -->
       <el-form-item prop="password">
         <span class="svg-container">
           <svg-icon icon-class="password" />
@@ -36,11 +40,12 @@
           auto-complete="on"
           @keyup.enter.native="handleLogin"
         />
+        <!-- 展示密码 -->
         <span class="show-pwd" @click="showPwd">
           <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
         </span>
       </el-form-item>
-
+      <!-- 登陆按钮 -->
       <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">Login</el-button>
 
     </el-form>

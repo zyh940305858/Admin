@@ -1,7 +1,10 @@
 <template>
   <div class="test-detail">
+    <!-- title -->
     <h2 class="test-detail-title">试题详情</h2>
+    <!-- content -->
     <div class="test-detail-main">
+      <!-- 试题详情列表 -->
       <div class="test-detail-list">
         <div style="margin-bottom: 20px;"><span>出题人：{{ testdetail.user_name }}</span></div>
         <h3>题目信息</h3>
@@ -17,6 +20,7 @@
           </div>
         </div>
       </div>
+      <!-- 试题答案 -->
       <div class="test-detail-answer">
         <h3>答案信息</h3>
         <div class="markdown">
@@ -33,24 +37,24 @@ import { mapState, mapActions } from 'vuex'
 export default {
   data() {
     return {
-      testdetail: {}
+      testdetail: {} // 试卷详情
     }
   },
   computed: {
     ...mapState({
-      detaildata: state => state.test.detaildata
+      detaildata: state => state.test.detaildata // 试卷详情
     })
   },
   async created() {
     const obj = {
       questions_id: this.$route.query.id
     }
-    await this.getdetailtest(obj)
+    await this.getdetailtest(obj) // 获取试卷详情
     this.testdetail = this.detaildata[0]
   },
   methods: {
     ...mapActions({
-      getdetailtest: 'test/getdetailtest'
+      getdetailtest: 'test/getdetailtest' // 获取试卷详情
     })
   }
 }

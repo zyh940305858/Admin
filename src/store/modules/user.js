@@ -3,15 +3,18 @@ import { getToken, setToken, removeToken } from '@/utils/auth'
 import { resetRouter } from '@/router'
 
 const state = {
-  token: getToken(),
-  userid: ''
+  token: getToken(), // token
+  userid: '' // 用户id
 }
 
 const mutations = {
+
+  // 设置 token
   SET_TOKEN: (state, token) => {
     state.token = token
   },
 
+  // 设置 用户id
   SET_USERID: (state, userid) => {
     state.userid = userid
   }

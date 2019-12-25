@@ -1,8 +1,13 @@
 <template>
   <div class="test-check">
+    <!-- title -->
     <h2 class="test-check-title">查看试题</h2>
+    <!-- conten -->
     <div class="test-check-content">
+
+      <!-- 条件选择 -->
       <div class="test-check-item">
+        <!-- 条件表单 -->
         <el-form ref="form" label-width="80px">
           <el-form-item label="课程类型:">
             <el-button v-for="(item,index) in newarr" :key="index" :class="index == currentindex || currentindex == 0 ? 'btns':''" @click="radiofn(index)">{{ item.subject_text }}</el-button>
@@ -20,6 +25,8 @@
         </el-form>
       </div>
     </div>
+
+    <!-- 试题列表 -->
     <div class="test-check-list">
       <ul>
         <li v-for="(item,index) in listData" :key="index">
@@ -49,26 +56,30 @@ import { mapState, mapActions } from 'vuex'
 export default {
   data() {
     return {
+      // 条件表单
       form: {
-        subject_id: undefined,
-        exam_id: undefined,
-        questions_type_id: undefined
+        subject_id: undefined, // 课程id
+        exam_id: undefined, // 考试类型id
+        questions_type_id: undefined // 试题类型id
       },
-      listData: [],
-      newarr: [],
-      currentindex: undefined
+      listData: [], // 列表数据
+      newarr: [], // 单选全选数组
+      currentindex: undefined // 选中下标
     }
   },
   computed: {
     ...mapState({
-      testlist: state => state.test.testlist,
-      testtypelist: state => state.test.testtypelist,
-      coursetypelist: state => state.test.coursetypelist,
-      questiontypelist: state => state.test.questiontypelist,
-      detaildata: state => state.test.detaildata
+      testlist: state => state.test.testlist, // 试题列表
+      testtypelist: state => state.test.testtypelist, // 试题类型列表
+      coursetypelist: state => state.test.coursetypelist, // 课程类型列表
+      questiontypelist: state => state.test.questiontypelist, // 题目类型列表
+      detaildata: state => state.test.detaildata // 详情数据
     })
   },
   async created() {
+    /**
+     * 开始拿到所有数据
+    */
     await this.getcoursetype()
     await this.gettesttype()
     await this.getquestiontype()
@@ -78,26 +89,30 @@ export default {
   },
   methods: {
     ...mapActions({
-      getalltest: 'test/getalltest',
-      gettesttype: 'test/gettesttype',
-      getcoursetype: 'test/getcoursetype',
-      getquestiontype: 'test/getquestiontype',
-      getdetailtest: 'test/getdetailtest'
+      getalltest: 'test/getalltest', // 获取所有试题
+      gettesttype: 'test/gettesttype', // 获取试题类型
+      getcoursetype: 'test/getcoursetype', // 获取课程类型
+      getquestiontype: 'test/getquestiontype', // 获取题目类型
+      getdetailtest: 'test/getdetailtest' // 获取试题详情
     }),
+    // 跳转到详情页面
     totestdetail(item) {
       this.$router.push(`/test/detail?id=${item.questions_id}`)
     },
+    // 跳转到编辑页面
     totestedit(item) {
       this.$router.push(`/test/edit?id=${item.questions_id}`)
     },
+    // 获取到符合条件的试题列表
     async getdetailtestfn() {
-      console.log(this.form)
       await this.getdetailtest(this.form)
       this.listData = this.detaildata
     },
+    // 整理全选数据
     newarrfn(list) {
       this.newarr = [{ subject_id: undefined, subject_text: 'all' }].concat(...list)
     },
+    // 选择框按钮
     radiofn(index) {
       if (this.currentindex === index) {
         this.currentindex = undefined
@@ -106,7 +121,6 @@ export default {
         this.currentindex = index
         this.form.subject_id = this.newarr[index].subject_id
       }
-      console.log(this.form)
     }
   }
 }
