@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2019-12-23 08:38:10
- * @LastEditTime : 2019-12-24 19:33:11
+ * @LastEditTime : 2019-12-25 08:47:59
  * @LastEditors  : Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Admin\src\components\ClassManagement\student\pagination.vue
@@ -13,7 +13,7 @@
       background
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
-      :current-page="currentPage4"
+      :current-page="currentPage1"
       :page-sizes="[firstListLength, firstListLength*2, firstListLength*3, firstListLength*4]"
       :page-size="firstListLength"
       layout="total,prev, pager, next,  sizes, jumper"
@@ -55,9 +55,9 @@ export default {
   },
   data() {
     return {
-      currentPage1: 5,
-      currentPage2: 5,
-      currentPage3: 5,
+      currentPage1: 1,
+      currentPage2: 2,
+      currentPage3: 3,
       currentPage4: 4,
       firstListLength:10
     };

@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2019-12-22 20:36:54
- * @LastEditTime : 2019-12-25 07:31:29
+ * @LastEditTime : 2019-12-25 08:40:57
  * @LastEditors  : Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Admin\src\components\ClassManagement\student\searchBar.vue
@@ -38,7 +38,7 @@
         </el-select>
       </el-form-item>
       <button @click="seek">搜索</button>
-      <button>重置</button>
+      <button @click="close">重置</button>
     </el-form>
   </div>
 </template>
@@ -63,8 +63,13 @@ export default {
   },
   methods: {
     seek(){
-      // console.log(this.form.grade_name,this.form.room_text,this.numberValidateForm.student_name);
-      0
+      console.log(this.form.grade_name,this.form.room_text,this.numberValidateForm.student_name);
+      
+    },
+    close(){
+      this.form.grade_name=""
+      this.form.room_text=""
+      this.numberValidateForm.student_name=""
     }
   },
   created() {
