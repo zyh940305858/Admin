@@ -65,3 +65,12 @@ export function selecttest(data) {
     }
   })
 }
+
+// 更新试题
+export function updatetest(data) {
+  return request({
+    url: '/exam/questions/update',
+    method: 'put',
+    data
+  })
+}

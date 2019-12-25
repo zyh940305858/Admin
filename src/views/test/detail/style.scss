@@ -1,15 +1,15 @@
-.test-check-detail .test-check-detail-title {
+.test-detail .test-detail-title {
     padding: 20px 0px;
     margin-top: 10px;
 }
 
 
-.test-check-detail .test-check-detail-main {
+.test-detail .test-detail-main {
     display: flex;
 }
 
 
-.test-check-detail .test-check-detail-main .test-check-detail-list {
+.test-detail .test-detail-main .test-detail-list {
     flex: 1;
     background: rgb(255, 255, 255);
     padding: 24px;
@@ -17,7 +17,7 @@
     border-radius: 10px;
 }
 
-.test-check-detail .test-check-detail-main .test-check-detail-answer {
+.test-detail .test-detail-main .test-detail-answer {
     width: 500px;
     background: rgb(255, 255, 255);
     padding: 24px;

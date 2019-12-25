@@ -1,8 +1,8 @@
 <template>
-  <div class="test-check-detail">
-    <h2 class="test-check-detail-title">试题详情</h2>
-    <div class="test-check-detail-main">
-      <div class="test-check-detail-list">
+  <div class="test-detail">
+    <h2 class="test-detail-title">试题详情</h2>
+    <div class="test-detail-main">
+      <div class="test-detail-list">
         <div style="margin-bottom: 20px;"><span>出题人：{{ testdetail.user_name }}</span></div>
         <h3>题目信息</h3>
         <div style="margin-top: 20px; margin-bottom: 20px;">
@@ -17,7 +17,7 @@
           </div>
         </div>
       </div>
-      <div class="test-check-detail-answer">
+      <div class="test-detail-answer">
         <h3>答案信息</h3>
         <div class="markdown">
           <p>{{ testdetail.questions_answer }}</p>

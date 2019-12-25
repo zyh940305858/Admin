@@ -118,7 +118,7 @@ export default {
           this.loading = true
           try {
             await this.login(this.loginForm)
-            this.$router.push({ path: this.redirect || '/' })
+            this.$router.push({ path: this.redirect || '/add/test' })
             this.loading = false
           } catch (e) {
             this.loading = false

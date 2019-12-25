@@ -5,20 +5,17 @@
       <div class="test-check-item">
         <el-form ref="form" label-width="80px">
           <el-form-item label="课程类型:">
-            <el-radio-group v-model="form.coursetype">
-              <el-radio-button v-model="form.coursetype" label="all" />
-              <el-radio-button v-for="(item,index) in coursetypelist" :key="index" :label="item.subject_text" :value="item.subject_id" />
-            </el-radio-group>
+            <el-button v-for="(item,index) in newarr" :key="index" :class="index == currentindex || currentindex == 0 ? 'btns':''" @click="radiofn(index)">{{ item.subject_text }}</el-button>
           </el-form-item>
           <el-form-item label="考试类型:">
-            <el-select v-model="form.testtype" placeholder="请选择">
+            <el-select v-model="form.exam_id" placeholder="请选择">
               <el-option v-for="(item,index) in testtypelist" :key="index" :label="item.exam_name" :value="item.exam_id" />
             </el-select>
             <label>试题类型:</label>
-            <el-select v-model="form.questiontype" placeholder="请选择">
+            <el-select v-model="form.questions_type_id" placeholder="请选择">
               <el-option v-for="(item,index) in questiontypelist" :key="index" :label="item.questions_type_text" :value="item.questions_type_id" />
             </el-select>
-            <el-button class="btn" icon="el-icon-search">查询</el-button>
+            <el-button class="btn" icon="el-icon-search" @click="getdetailtestfn">查询</el-button>
           </el-form-item>
         </el-form>
       </div>
@@ -37,7 +34,7 @@
           </div>
           <div class="link">
             <div>
-              <a type="primary">删除</a>
+              <a type="primary" @click="totestedit(item)">编辑</a>
             </div>
           </div>
         </li>
@@ -53,14 +50,13 @@ export default {
   data() {
     return {
       form: {
-        coursetype: '',
-        testtype: '',
-        questiontype: ''
+        subject_id: undefined,
+        exam_id: undefined,
+        questions_type_id: undefined
       },
       listData: [],
-      checkall: false,
-      isIndeterminate: false,
-      ckeckallarr: []
+      newarr: [],
+      currentindex: undefined
     }
   },
   computed: {
@@ -68,7 +64,8 @@ export default {
       testlist: state => state.test.testlist,
       testtypelist: state => state.test.testtypelist,
       coursetypelist: state => state.test.coursetypelist,
-      questiontypelist: state => state.test.questiontypelist
+      questiontypelist: state => state.test.questiontypelist,
+      detaildata: state => state.test.detaildata
     })
   },
   async created() {
@@ -76,6 +73,7 @@ export default {
     await this.gettesttype()
     await this.getquestiontype()
     await this.getalltest()
+    this.newarrfn(this.coursetypelist)
     this.listData = this.testlist
   },
   methods: {
@@ -83,10 +81,32 @@ export default {
       getalltest: 'test/getalltest',
       gettesttype: 'test/gettesttype',
       getcoursetype: 'test/getcoursetype',
-      getquestiontype: 'test/getquestiontype'
+      getquestiontype: 'test/getquestiontype',
+      getdetailtest: 'test/getdetailtest'
     }),
     totestdetail(item) {
       this.$router.push(`/test/detail?id=${item.questions_id}`)
+    },
+    totestedit(item) {
+      this.$router.push(`/test/edit?id=${item.questions_id}`)
+    },
+    async getdetailtestfn() {
+      console.log(this.form)
+      await this.getdetailtest(this.form)
+      this.listData = this.detaildata
+    },
+    newarrfn(list) {
+      this.newarr = [{ subject_id: undefined, subject_text: 'all' }].concat(...list)
+    },
+    radiofn(index) {
+      if (this.currentindex === index) {
+        this.currentindex = undefined
+        this.form.subject_id = undefined
+      } else {
+        this.currentindex = index
+        this.form.subject_id = this.newarr[index].subject_id
+      }
+      console.log(this.form)
     }
   }
 }

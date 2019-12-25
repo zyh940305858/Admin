@@ -10,10 +10,23 @@
     border-radius: 10px;
 }
 
+.btns{
+  border-radius: 4px!important;
+  border: 0!important;
+  font-size: 14px!important;
+  color: #fff!important;
+  background: linear-gradient(-90deg,#4e75ff,#0139fd)!important;
+}
+
 
 .test-check .test-check-content .test-check-item {
+    line-height: 100%;
     margin-bottom: 25px;
     display: flex;
+}
+
+.checked{
+    background-color: red;
 }
 
 .test-check .test-check-list ul {

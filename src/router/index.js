@@ -77,6 +77,13 @@ export const constantRoutes = [
       hidden: true,
       component: () => import('@/views/test/detail/index'),
       meta: { title: '试题详情' }
+    },
+    {
+      path: 'edit',
+      name: 'edit',
+      hidden: true,
+      component: () => import('@/views/test/edit/index'),
+      meta: { title: '查看试题' }
     }]
   },
 

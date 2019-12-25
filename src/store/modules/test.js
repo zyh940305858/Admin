@@ -1,4 +1,4 @@
-import { gettesttype, getcoursetype, getquestiontype, addtest, insertquestiontype, selectalltest, selecttest } from '@/api/test'
+import { gettesttype, getcoursetype, getquestiontype, addtest, insertquestiontype, selectalltest, selecttest, updatetest } from '@/api/test'
 
 const state = {
   testtypelist: [],
@@ -66,6 +66,11 @@ const actions = {
     const res = await selecttest(payload)
     console.log(res)
     commit('SET_DETAILDATA', res.data)
+  },
+
+  async edittest({ commit }, payload) {
+    const res = await updatetest(payload)
+    console.log(res)
   }
 }
 
