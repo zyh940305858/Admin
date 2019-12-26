@@ -1,7 +1,7 @@
 <!--
  * @Author: 王弘钢
  * @Date: 2019-12-19 21:29:48
- * @LastEditTime : 2019-12-23 20:59:17
+ * @LastEditTime : 2019-12-25 15:58:05
  * @LastEditors  : Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Admin\src\components\ClassManagement\class\alert.vue
@@ -40,7 +40,7 @@
         </template>
       </el-table-column>
     </el-table>
-    <UpdateAlert :dialogFormVisible="dialogFormVisible"/>
+    <UpdateAlert :dialogFormVisible="dialogFormVisible" @flag="flag" :obj="obj"/>
   </div>
 </template>
 
@@ -54,19 +54,29 @@ UpdateAlert
   },
   data() {
     return {
-      dialogFormVisible:false
+      dialogFormVisible:false,
+      obj:{}
     };
   },
   methods: {
      ...mapActions({
       deleteClassActions: "classManagement/deleteClassActions"
     }),
+    flag(flag){
+this.dialogFormVisible=flag
+    },
     handleEdit(index, row) {
+      // 点击时将dialogFormVisible变为true，弹出弹框
       this.dialogFormVisible = true
-      console.log(index, row, "---------------handleEdit");
+      // console.log(index, row, "---------------handleEdit");
+      // 点击时获取到grade_id和name
+      this.obj={
+        grade_id:row.grade_id,
+        grade_name:row.grade_name,
+      }
     },
     handleDelete(index, row) {
-      console.log(index, row, "---------------handleDelete");
+      // console.log(index, row, "---------------handleDelete");
       this.deleteClassActions({grade_id:row.grade_id})
     }
   }

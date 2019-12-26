@@ -1,13 +1,13 @@
 <!--
  * @Author: your name
- * @LastEditTime : 2019-12-23 08:37:09
+ * @LastEditTime : 2019-12-25 16:52:47
  * @LastEditors  : Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Admin\src\components\ClassManagement\class\alert.vue
  -->
 <template>
   <div>
-    <el-table :data="getOverStudentStateList" style="width: 100%">
+    <el-table :data="newGetOverStudentStateList==![]?getOverStudentStateList:newGetOverStudentStateList" style="width: 100%">
       <el-table-column label="姓名" width="250">
         <template slot-scope="scope">
           <span>{{ scope.row.student_name }}</span>
@@ -51,19 +51,32 @@
 </template>
 
 <script>
+import { mapState, mapMutations, mapGetters, mapActions } from "vuex";
 export default {
-  props: ["getOverStudentStateList"],
+  props: ["getOverStudentStateList","newGetOverStudentStateList"],
   data() {
-    return {};
+    return {
+      list:[]
+    };
   },
   methods: {
+     ...mapActions({
+      deleteStudentActions: "classManagement/deleteStudentActions"
+    }),
     handleEdit(index, row) {
       console.log(index, row, "---------------handleEdit");
     },
     handleDelete(index, row) {
-      console.log(index, row, "---------------handleDelete");
+      console.log(index, row.student_id, "---------------handleDelete");
+      this.deleteStudentActions({id:row.student_id})
     }
-  }
+  },
+  created() {
+    
+  },
+  updated() {
+    
+  },
 };
 </script>
 

@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2019-12-20 09:57:14
- * @LastEditTime : 2019-12-23 19:43:11
+ * @LastEditTime : 2019-12-26 08:39:47
  * @LastEditors  : Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Admin\src\api\classManagement.js
@@ -78,5 +78,23 @@ export function deleteClassRoomActions(data) {
     url: '/manger/room/delete',
     method: 'delete',
     data
+  })
+}
+// 更新接口
+export function updateStudentActions(data) {
+  console.log(data,'------api--------')
+  return request({
+    url: '/manger/grade/update',
+    method: 'put',
+    data
+  })
+}
+// 删除学生接口
+export function deleteStudentActions(params) {
+  console.log(params,'------api--------')
+  return request({
+    url: '/manger/student/:id=>student_id',
+    method: 'delete',
+    params
   })
 }

@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2019-12-19 17:03:51
- * @LastEditTime : 2019-12-24 20:48:48
+ * @LastEditTime : 2019-12-25 10:50:57
  * @LastEditors  : Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Admin\src\views\classManagement\ClassroomManagement.vue
@@ -14,10 +14,11 @@
       :getOverClassStateList="getOverClassStateList"
       :getClassAndGradeStateList="getClassAndGradeStateList"
       :getOverStudentStateList="getOverStudentStateList"
+      @listInScb="listInScb"
     />
     <ul>
       <!-- 数据组件 -->
-      <List :getOverStudentStateList="getOverStudentStateList.slice(startCount,endCount) " />
+      <List :getOverStudentStateList="getOverStudentStateList.slice(startCount,endCount) " :newGetOverStudentStateList="newGetOverStudentStateList" />
       <Pagination @firstListLength="firstListLength" @pagVal="pagVal"/>
     </ul>
   </div>
@@ -28,16 +29,18 @@
  * @param {type}
  * @return:
  */
-import List from "../../components/ClassManagement/student/list";
-import SearchBar from "../../components/ClassManagement/student/searchBar";
-import Pagination from "../../components/ClassManagement/student/pagination";
-import { mapState, mapMutations, mapGetters, mapActions } from "vuex";
+import List from "../../components/ClassManagement/student/list"
+import SearchBar from "../../components/ClassManagement/student/searchBar"
+import Pagination from "../../components/ClassManagement/student/pagination"
+import { mapState, mapMutations, mapGetters, mapActions } from "vuex"
+import { filter } from 'minimatch'
 export default {
   data() {
     return {
       startCount:0,
       endCount:10,
-      cod:null
+      cod:null,
+      newGetOverStudentStateList:[]
     }
   },
   components: {
@@ -56,8 +59,14 @@ export default {
     })
   },
   methods: {
+    listInScb(room_text,grade_name,student_name){
+      let newGetOverStudentStateList=this.getOverStudentStateList.filter(item => {
+        return item.student_name==student_name||item.grade_name==grade_name||item.room_text==room_text
+      })
+      this.newGetOverStudentStateList=newGetOverStudentStateList
+    },
     firstListLength(firstListLength){
-this.endCount=firstListLength;
+this.endCount=firstListLength
 this.cod=firstListLength
     },
     pagVal(pagVal){
@@ -72,14 +81,14 @@ this.endCount=pagVal*this.cod+this.cod
     })
   },
   created() {
-    this.getOverStudentActionsList();
-    this.getOverClassroomActionsList();
-    this.getClassAndGradeActionsList();
+    this.getOverStudentActionsList()
+    this.getOverClassroomActionsList()
+    this.getClassAndGradeActionsList()
   },
   updated() {
 
   },
-};
+}
 </script>
 <style lang="scss" scoped>
 .classContainer {

@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2019-12-19 20:28:02
- * @LastEditTime : 2019-12-24 20:42:58
+ * @LastEditTime : 2019-12-25 16:50:46
  * @LastEditors  : Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Admin\src\store\modules\classManagement.js
@@ -15,7 +15,9 @@ import {
   addClassActions,
   deleteClassActions,
   addClassRoomActions,
-  deleteClassRoomActions
+  deleteClassRoomActions,
+  updateStudentActions,
+  deleteStudentActions
 } from '@/api/classManagement'
 const state = {
   // 列表数据
@@ -80,6 +82,9 @@ const actions = {
   async addClassRoomActions({ commit }, payload) { await addClassRoomActions(payload) },
   // 删除教室actions
   async deleteClassRoomActions({ commit }, payload) { await deleteClassRoomActions(payload) },
+  // 更新班级信息
+  async updateStudentActions({ commit }, payload) { await updateStudentActions(payload) },
+  async deleteStudentActions({ commit }, payload) { await deleteStudentActions(payload) },
   // 全部班级管理数据
   async getOverClassActionsList({ commit }, payload) {
     let res = await getOverClassActionsList()
@@ -105,6 +110,12 @@ const actions = {
     commit("getOverStudentMutationsList", res)
   },
   // 分配教室的班级
+  async getClassAndGradeActionsList({ commit }, payload) {
+    let res = await getClassAndGradeActionsList()
+    // 传到同步方法中
+    commit("getClassAndGradeMutationsList", res)
+  },
+  // 删除学生接口
   async getClassAndGradeActionsList({ commit }, payload) {
     let res = await getClassAndGradeActionsList()
     // 传到同步方法中

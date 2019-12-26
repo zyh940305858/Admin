@@ -1,17 +1,13 @@
 <template>
   <div>
-    <!-- <button @click="dialogFormVisible = true">+添加班级</button> -->
     <!-- Form -->
     <el-dialog title="添加班级" :visible.sync="dialogFormVisible">
       <el-form :model="form" ref="form" label-width="100px" class="demo-ruleForm">
        
-          <el-form-item
-            label="班级名"
-          >
-            <el-input type="input" v-model="form.grade_name" ></el-input>
+          <el-form-item label="班级名">
+            <el-input type="input" v-model="form.grade_name"  :disabled="true"></el-input>
           </el-form-item>
         
-
         <el-form-item label="*教室号:" :label-width="formLabelWidth">
           <el-select v-model="form.room_id" placeholder="请选择教室号">
             <el-option
@@ -46,10 +42,9 @@
 import { mapState, mapMutations, mapGetters, mapActions } from "vuex";
 import Axios from 'axios';
 export default {
-  props:["dialogFormVisible"],
+  props:["dialogFormVisible","obj"],
   data() {
     return {
-      // dialogFormVisible: false,
       form: {
         grade_name: "",
         room_id: "",
@@ -71,15 +66,26 @@ export default {
       getOverClassroomActionsList:
         "classManagement/getOverClassroomActionsList",
       getAllLessonsActionsList: "classManagement/getAllLessonsActionsList",
-      addClassActions: "classManagement/addClassActions"
+      updateStudentActions: "classManagement/updateStudentActions"
     }),
     close(){
       this.dialogFormVisible = false;
+      console.log(this.dialogFormVisible,'-------------close---------');
+      this.$emit('flag',this.dialogFormVisible)
     },
     submit(){
       this.dialogFormVisible = false;
-      let list=JSON.parse(JSON.stringify(this.form));
-      this.addClassActions(list)
+      console.log(this.dialogFormVisible,'----------submit------dialogFormVisible========------');
+      this.$emit('flag',this.dialogFormVisible)
+      // 更新数据
+      let from=JSON.parse(JSON.stringify(this.form))
+      let list={
+          grade_id:this.obj.grade_id,
+          grade_name:this.obj.grade_name,
+          subject_id:from.subject_id, 
+          room_id:from.room_id, 
+      }
+      this.updateStudentActions(list)
     },
     submitForm(formName) {
       this.$refs[formName].validate(valid => {

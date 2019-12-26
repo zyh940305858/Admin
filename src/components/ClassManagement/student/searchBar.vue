@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2019-12-22 20:36:54
- * @LastEditTime : 2019-12-25 08:40:57
+ * @LastEditTime : 2019-12-25 09:00:22
  * @LastEditors  : Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Admin\src\components\ClassManagement\student\searchBar.vue
@@ -63,8 +63,10 @@ export default {
   },
   methods: {
     seek(){
-      console.log(this.form.grade_name,this.form.room_text,this.numberValidateForm.student_name);
-      
+      let grade_name=this.form.grade_name;
+      let room_text=this.form.room_text;
+      let student_name=this.numberValidateForm.student_name
+      this.$emit('listInScb',grade_name,room_text,student_name)
     },
     close(){
       this.form.grade_name=""
