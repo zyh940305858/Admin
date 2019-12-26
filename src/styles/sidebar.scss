@@ -8,6 +8,7 @@
   }
 
   .sidebar-container {
+    float: left;
     transition: width 0.28s;
     width: $sideBarWidth !important;
     background-color: $menuBg;
