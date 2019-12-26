@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2019-12-19 14:41:57
+ * @LastEditTime: 2019-12-19 14:57:33
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: \Admin\src\utils\request.js
+ */
 import axios from 'axios'
 import { MessageBox, Message } from 'element-ui'
 import store from '@/store'

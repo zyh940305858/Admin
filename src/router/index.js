@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2019-12-19 16:49:25
+ * @LastEditTime : 2019-12-20 16:25:12
+ * @LastEditors  : Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \Admin\src\router\index.js
+ */
 import Vue from 'vue'
 import Router from 'vue-router'
 
@@ -53,6 +61,7 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/test/add',
     meta: { title: '试题管理', icon: 'dashboard' },
+    // redirect: '/test',
     children: [{
       path: 'add',
       name: 'add',
@@ -101,6 +110,27 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/addTheTest',
+    component: Layout,
+    // redirect: '/examManagement/addTheTest',
+    name: 'addTheTest',
+    meta: { title: '考试管理', icon: 'example' },
+    children: [
+      {
+        path: 'addTheTest',
+        component: () => import('../views/examManagement/addTheTest.vue'),
+        name: 'addTheTest',
+        meta: { title: '添加用户', icon: 'example' }
+      },
+      {
+        path: 'paperList',
+        component: () => import('../views/examManagement/paperList'),
+        name: 'paperList',
+        meta: { title: '用户展示', icon: 'example' }
+      }
+    ]
+  },
+  {
     path: '/Marking',
     component: Layout,
     redirect: '/Marking/Mark',
@@ -119,6 +149,17 @@ export const constantRoutes = [
       }
     ]
   },
+  // {
+  //   path: '/',
+  //   component: Layout,
+  //   children: [{
+  //     path: 'exam',
+  //     name: 'exam',
+  //     component: () => import('@/views/Exam/exam.vue'),
+  //     meta: { title: 'exam', icon: 'dashboard' }
+  //   }]
+  // },
+
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]

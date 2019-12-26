@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2019-12-19 14:41:57
+ * @LastEditTime : 2019-12-19 14:58:46
+ * @LastEditors  : Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \Admin\src\store\modules\user.js
+ */
 import { login, getInfo } from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import { resetRouter } from '@/router'
@@ -25,14 +33,12 @@ const actions = {
     commit('SET_TOKEN', res.token)
     setToken(res.token)
   },
-  
   // get user info
   async getInfo({ commit }) {
     const res = await getInfo()
     // console.log(res)
     commit('SET_USERID', res.data.user_id)
   },
-
   // user logout
   logout({ commit }) {
     commit('SET_TOKEN', '')
