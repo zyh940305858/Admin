@@ -1,8 +1,8 @@
 /*
  * @Author: your name
  * @Date: 2019-12-19 14:41:57
- * @LastEditTime: 2019-12-19 14:57:33
- * @LastEditors: your name
+ * @LastEditTime : 2019-12-22 19:29:48
+ * @LastEditors  : Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Admin\src\utils\request.js
  */

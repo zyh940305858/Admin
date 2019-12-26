@@ -16,7 +16,7 @@ import exam from './modules/exam'
 import test from './modules/test'
 import addpaperList from './modules/addpaperList'
 import paperList from './modules/paperList'
-
+import classManagement from './modules/classManagement'
 Vue.use(Vuex)
 
 // https://webpack.js.org/guides/dependency-management/#requirecontext
@@ -40,7 +40,8 @@ const store = new Vuex.Store({
     exam,
     test,
     addpaperList,
-    paperList
+    paperList,
+    classManagement
   },
   getters
 })

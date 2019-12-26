@@ -1,7 +1,12 @@
 /*
  * @Author: your name
+<<<<<<< HEAD
  * @Date: 2019-12-19 16:49:25
  * @LastEditTime : 2019-12-20 16:25:12
+=======
+ * @Date: 2019-12-19 16:27:04
+ * @LastEditTime : 2019-12-19 16:44:27
+>>>>>>> origin/whg
  * @LastEditors  : Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Admin\src\router\index.js
@@ -50,7 +55,6 @@ export const constantRoutes = [
     component: () => import('@/views/404'),
     hidden: true
   },
-
   {
     path: '/',
     redirect: '/test'
@@ -159,6 +163,37 @@ export const constantRoutes = [
   //     meta: { title: 'exam', icon: 'dashboard' }
   //   }]
   // },
+
+  {
+    path: '/classManagement',
+    component: Layout,
+    redirect: '/classManagement/classManagement',
+    name: 'classManagement',
+    meta: {
+      title: '班级管理',
+      icon: 'example'
+    },
+    children: [
+      {
+        path: 'classManagement',
+        component: () => import('@/views/classManagement/classManagement'),
+        name: 'classManagement',
+        meta: { title: '班级管理', icon: 'example' }
+      },
+      {
+        path: 'ClassroomManagement',
+        component: () => import('@/views/classManagement/ClassroomManagement'),
+        name: 'ClassroomManagement',
+        meta: { title: '教室管理', icon: 'example' }
+      },
+      {
+        path: 'studentManagement',
+        component: () => import('@/views/classManagement/studentManagement'),
+        name: 'studentManagement',
+        meta: { title: '学生管理', icon: 'example' }
+      }
+    ]
+  },
 
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }

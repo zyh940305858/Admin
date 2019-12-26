@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2019-12-19 14:28:47
+ * @LastEditTime : 2019-12-19 21:15:10
+ * @LastEditors  : Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \Admin\src\main.js
+ */
 import Vue from 'vue'
 
 import 'normalize.css/normalize.css' // A modern alternative to CSS resets
@@ -11,7 +19,7 @@ import '@/styles/index.scss' // global css
 import App from './App'
 import store from './store'
 import router from './router'
-
+import './styles/reset.css'
 import '@/icons' // icon
 import '@/permission' // permission control
 
