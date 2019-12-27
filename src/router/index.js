@@ -106,6 +106,12 @@ export const constantRoutes = [
     meta: { title: '考试管理', icon: 'dashboard' },
     children: [
       {
+        path: 'exam',
+        name: 'exam',
+        component: () => import('@/views/exam/exam.vue'),
+        meta: { title: '添加考试' }
+      },
+      {
         path: 'list',
         name: 'list',
         component: () => import('@/views/exam/list/index'),

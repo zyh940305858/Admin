@@ -49,10 +49,12 @@ const actions = {
   },
   async gettypelist({ commit }, payload) {
     const res = await examType()
+    // console.log("===========res======type",res.data)
     commit('uptypelist', res.data)
   },
   async getsublist({ commit }, payload) {
     const res = await subject()
+    // console.log("===========res======subject",res.data)
     commit('upsublist', res.data)
   },
   async actionsearch({ commit }, payload) {
