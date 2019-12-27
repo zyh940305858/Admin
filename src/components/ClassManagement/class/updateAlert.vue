@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Form -->
-    <el-dialog title="添加班级" :visible.sync="dialogFormVisible">
+    <el-dialog title="添加班级" :visible.sync="dialogformvisible">
       <el-form ref="form" :model="form" label-width="100px" class="demo-ruleForm">
         <el-form-item label="班级名">
           <el-input v-model="form.grade_name" type="input" :disabled="true" />
@@ -40,7 +40,7 @@
 import { mapState, mapActions } from 'vuex'
 
 export default {
-  props: ['dialogFormVisible', 'obj'],
+  props: ['dialogformvisible', 'obj'],
   data() {
     return {
       form: {
@@ -70,17 +70,17 @@ export default {
       updateStudentActions: 'classManagement/updateStudentActions'
     }),
     close() {
-      this.dialogFormVisible = false
-      // console.log(this.dialogFormVisible,'-------------close---------")
-      this.$emit('flag', this.dialogFormVisible)
+      this.dialogformvisible = false
+      // console.log(this.dialogformvisible,'-------------close---------")
+      this.$emit('flag', this.dialogformvisible)
     },
     submit() {
-      this.dialogFormVisible = false
+      this.dialogformvisible = false
       // console.log(
       //   this.dialgFormVisible,
-      //  '----------submit------dialogFormVisible========------"
+      //  '----------submit------dialogformvisible========------"
       // )
-      this.$emit('flag', this.dialogFormVisible)
+      this.$emit('flag', this.dialogformvisible)
       // 更新数据
       const from = JSON.parse(JSON.stringify(this.form))
       const list = {

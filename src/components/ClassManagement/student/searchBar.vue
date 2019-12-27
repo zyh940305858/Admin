@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2019-12-22 20:36:54
- * @LastEditTime : 2019-12-25 09:00:22
+ * @LastEditTime : 2019-12-27 09:58:12
  * @LastEditors  : Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Admin\src\components\ClassManagement\student\searchBar.vue
@@ -19,7 +19,7 @@
       <el-form-item>
         <el-select v-model="form.grade_name" placeholder="请选择教室号">
           <el-option
-            v-for="(item,index) in getOverClassStateList"
+            v-for="(item,index) in getoverclassstatelist"
             :key="index"
             :label="item.room_text"
             :value="item.room_text"
@@ -30,7 +30,7 @@
       <el-form-item>
         <el-select v-model="form.room_text" placeholder="班级名">
           <el-option
-            v-for="(item,index) in getClassAndGradeStateList"
+            v-for="(item,index) in getclassandgradestatelist"
             :key="index"
             :label="item.grade_name"
             :value="item.grade_name"
@@ -46,9 +46,9 @@
 <script>
 export default {
   props: [
-    'getOverClassStateList',
-    'getClassAndGradeStateList',
-    'getOverStudentStateList'
+    'getoverclassstatelist',
+    'getclassandgradestatelist',
+    'getoverstudentstatelist'
   ],
   data() {
     return {
@@ -80,6 +80,7 @@ export default {
 
 <style lang="scss" scoped>
 div {
+  width: 100%;
   display: flex;
   margin: 0;
   padding: 0;

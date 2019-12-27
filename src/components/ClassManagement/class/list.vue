@@ -1,14 +1,14 @@
 <!--
  * @Author: 王弘钢
  * @Date: 2019-12-19 21:29:48
- * @LastEditTime : 2019-12-25 15:58:05
+ * @LastEditTime : 2019-12-27 09:32:05
  * @LastEditors  : Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Admin\src\components\ClassManagement\class\alert.vue
  -->
 <template>
   <div>
-    <el-table :data="getStateList" style="width: 100%">
+    <el-table :data="getstatelist" style="width: 100%">
       <el-table-column label="班级名" width="350">
         <template slot-scope="scope">
           <span>{{ scope.row.grade_name }}</span>
@@ -40,7 +40,7 @@
         </template>
       </el-table-column>
     </el-table>
-    <UpdateAlert :obj="obj" :dialogFormVisible="dialogFormVisible" @flag="flag" />
+    <UpdateAlert :obj="obj" :dialogformvisible="dialogFormVisible" @flag="flag" />
   </div>
 </template>
 
@@ -51,7 +51,7 @@ export default {
   components: {
     UpdateAlert
   },
-  props: ['getStateList'],
+  props: ['getstatelist'],
   data() {
     return {
       dialogFormVisible: false,

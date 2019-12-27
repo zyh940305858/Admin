@@ -1,14 +1,14 @@
 <!--
  * @Author: your name
  * @Date: 2019-12-20 16:43:55
- * @LastEditTime : 2019-12-23 19:53:13
+ * @LastEditTime : 2019-12-27 09:34:54
  * @LastEditors  : Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Admin\src\components\ClassroomManagement\list.vue
  -->
 <template>
   <div>
-    <el-table :data="getOverClassStateList" style="width: 100%">
+    <el-table :data="getoverclassstatelist" style="width: 100%">
       <el-table-column label="教室号" width="770">
         <template slot-scope="scope">
           <span>{{ scope.row.room_text }}</span>
@@ -27,7 +27,7 @@
 <script>
 import { mapActions } from 'vuex'
 export default {
-  props: ['getOverClassStateList'],
+  props: ['getoverclassstatelist'],
   data() {
     return {}
   },

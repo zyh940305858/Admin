@@ -1,14 +1,14 @@
 <!--
  * @Author: your name
- * @LastEditTime : 2019-12-25 16:52:47
+ * @LastEditTime : 2019-12-27 09:56:52
  * @LastEditors  : Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Admin\src\components\ClassManagement\class\alert.vue
  -->
 <template>
-  <div>
+  <div class="list">
     <el-table
-      :data="newGetOverStudentStateList==![]?getOverStudentStateList:newGetOverStudentStateList"
+      :data="newgetoverstudentstatelist==![]?getoverstudentstatelist:newgetoverstudentstatelist"
       style="width: 100%"
     >
       <el-table-column label="姓名" width="250">
@@ -56,7 +56,7 @@
 <script>
 import { mapActions } from 'vuex'
 export default {
-  props: ['getOverStudentStateList', 'newGetOverStudentStateList'],
+  props: ['getoverstudentstatelist', 'newgetoverstudentstatelist'],
   data() {
     return {
       list: []
@@ -78,6 +78,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.list{
+margin-top: 20px
+}
 /deep/.el-table__header {
   background: #000;
 }
