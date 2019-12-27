@@ -1,14 +1,17 @@
 <template>
   <div class="box">
-    <p>添加用户</p>
+    <h4>添加用户</h4>
     <div class="con">
       <div class="one">
-        <button
-          class="addAuthor"
-          style="color:#0139FD;border:1px solid #0139FD;height:32px;width:88px; line-height: 11px;font-size:14px"
+        <div class="btnuser">
+          <button
+          id="addAuthor"
+          tyle="color:#0139FD;border:1px solid #0139FD;font-size:14px"
           @click="addAuthor"
         >添加用户</button>
         <button class="newAuthor" @click="gNew">更新用户</button>
+        </div>
+        
         <el-form ref="ruleForm" :model="ruleForm" status-icon class="demo-ruleForm">
           <el-tabs ref="select" :tab-position="tabPosition" style="display:none">
             <el-select v-model="value" placeholder="请选择身份id">
@@ -47,8 +50,7 @@
       </div>
       <div class="two">
         <button
-          class="addAuthor"
-          style="color:#0139FD;border:1px solid #0139FD;height:32px;width:88px; line-height: 11px;font-size:14px"
+          id="addAuthor"
         >添加身份</button>
         <el-form
           ref="numberValidateForm"
@@ -71,15 +73,13 @@
       </div>
       <div class="three">
         <button
-          class="addAuthor"
-          style="color:#0139FD;border:1px solid #0139FD;font-size:14px"
+          id="addAuthor"
         >添加api接口权限</button>
         <AddApiQuanXi />
       </div>
       <div class="four">
         <button
-          class="addAuthor"
-          style="color:#0139FD;border:1px solid #0139FD;font-size:14px"
+          id="addAuthor"
         >添加视图接口权限</button>
         <el-form ref="ruleForm" :model="ruleForm" status-icon class="demo-ruleForm">
           <el-tabs :tab-position="tabPosition">
@@ -100,8 +100,7 @@
       </div>
       <div class="five">
         <button
-          class="addAuthor"
-          style="color:#0139FD;border:1px solid #0139FD;font-size:14px"
+          id="addAuthor"
         >给身份设置api接口权限</button>
         <el-form ref="ruleForm" :model="ruleForm" status-icon class="demo-ruleForm">
           <el-tabs :tab-position="tabPosition">
@@ -112,7 +111,6 @@
           <el-tabs :tab-position="tabPosition">
             <el-select
               v-model="valuesFiveTwo"
-              style="color:#0139FD;border:1px solid #0139FD;font-size:14px"
               placeholder="请选择api接口权限"
             >
               <el-option
@@ -129,7 +127,7 @@
         </el-form>
       </div>
       <div class="six">
-        <button class="addAuthor" style="color:#0139FD;border:1px solid #0139FD">给身份设置视图权限</button>
+        <button id="addAuthor">给身份设置视图权限</button>
         <el-form ref="ruleForm" :model="ruleForm" status-icon class="demo-ruleForm">
           <el-tabs :tab-position="tabPosition">
             <el-select v-model="valuesSix" placeholder="请选择身份id">
@@ -304,10 +302,36 @@ export default {
   margin-left: 20px;
   background: #f1f1f1;
 }
+h4{
+  height: 71px;
+  font-size: 21px;
+  padding-top: 15px;
+
+}
 .con {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  .btnuser{
+     .addAuthor,
+.newAuthor {
+  display: inline-block;
+  color:black;
+  border:1px solid #ccc;
+  height:32px;
+  background: #fff;
+  line-height: 11px;
+  font-size:14px;
+}
+  }
+ 
+}
+#addAuthor{
+  height: 32px;
+  color:#0139FD;
+  border:1px solid #0139FD;
+  font-size:14px;
+  background: #fff;
 }
 .one,
 .two,
@@ -317,20 +341,12 @@ export default {
 .six {
   width: 33%;
 
-  border-right: 1px solid #ccc;
-  border-top: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
+  border: 1px solid #ccc;
+  
   border-radius: 5px;
   padding: 10px;
 }
-.addAuthor,
-.newAuthor {
-  background: #ffff;
-  border: 1px solid #eeeeee;
-  line-height: 32px;
-  margin-left: 10px;
-  margin-top: 10px;
-}
+ 
 .demo-ruleForm {
   margin-left: 10px;
   margin-right: 10px;
