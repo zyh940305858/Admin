@@ -1,7 +1,7 @@
 <!--
  * @Author: 王弘钢
  * @Date: 2019-12-19 21:29:48
- * @LastEditTime : 2019-12-27 09:32:05
+ * @LastEditTime : 2019-12-27 10:12:40
  * @LastEditors  : Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Admin\src\components\ClassManagement\class\alert.vue

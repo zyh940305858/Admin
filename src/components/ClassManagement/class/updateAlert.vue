@@ -2,8 +2,8 @@
   <div>
     <!-- Form -->
     <el-dialog title="添加班级" :visible.sync="dialogformvisible">
-      <el-form ref="form" :model="form" label-width="100px" class="demo-ruleForm">
-        <el-form-item label="班级名">
+      <el-form ref="form" :model="form" label-width="120px" class="demo-ruleForm">
+        <el-form-item label="*班级名">
           <el-input v-model="form.grade_name" type="input" :disabled="true" />
         </el-form-item>
 
@@ -113,5 +113,18 @@ button {
   width: 160px;
   height: 40px;
   font-size: 15px;
+}
+/deep/.el-dialog{
+  width: 550px;
+}
+/deep/.el-dialog__header{
+  width: 350px;
+}
+/deep/.el-dialog__body{
+  width: 350px;
+}
+
+/deep/.el-input__inner{
+  width: 300px;
 }
 </style>
