@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2019-12-19 14:41:57
- * @LastEditTime : 2019-12-26 16:50:11
+ * @LastEditTime : 2019-12-30 19:16:16
  * @LastEditors  : Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Admin\src\utils\request.js
@@ -13,8 +13,8 @@ import { getToken } from '@/utils/auth'
 
 // create an axios instance
 const service = axios.create({
-  baseURL: 'http://169.254.52.89:7002', // url = base url + request url
-  // baseURL: 'http://169.254.12.155:7002', // url = base url + request url
+  // baseURL: 'http://169.254.52.89:7002', // url = base url + request url
+  baseURL: 'http://169.254.12.155:7002', // url = base url + request url
   // withCredentials: true, // send cookies when cross-domain requests
   timeout: 5000 // request timeout
 })

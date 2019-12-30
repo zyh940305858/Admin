@@ -1,14 +1,14 @@
 <!--
  * @Author: your name
  * @Date: 2019-12-19 16:43:45
- * @LastEditTime : 2019-12-27 09:54:13
+ * @LastEditTime : 2019-12-30 21:02:13
  * @LastEditors  : Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Admin\src\views\classManagement\classManagement.vue
  -->
 <template>
   <div class="classContainer">
-    <p>班级管理</p>
+    <p>{{ $t('lang.nav1') }}</p>
     <ul>
       <!-- 弹框组件 -->
       <Alert />

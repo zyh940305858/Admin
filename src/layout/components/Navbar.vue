@@ -9,7 +9,6 @@
 
     <div class="right-menu">
       <el-dropdown class="avatar-container" trigger="click">
-
         <!-- 用户头像 -->
         <div class="avatar-wrapper">
           <img src="https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif?imageView2/1/w/80/h/80" class="user-avatar">
@@ -29,6 +28,7 @@
           <a target="_blank" href="https://panjiachen.github.io/vue-element-admin-site/zh/">
             <el-dropdown-item>Docs</el-dropdown-item>
           </a>
+          <span @click="changeLaguages()">切换语言:{{ $t('lang.name') }}</span>
           <el-dropdown-item divided>
             <span style="display:block;" @click="logout">Log Out</span>
           </el-dropdown-item>
@@ -48,6 +48,11 @@ export default {
     Breadcrumb,
     Hamburger
   },
+  data() {
+    return {
+      lang: 'zh'
+    }
+  },
   computed: {
     ...mapGetters([
       'sidebar'
@@ -63,6 +68,11 @@ export default {
     async logout() {
       await this.$store.dispatch('user/logout')
       this.$router.push(`/login?redirect=${this.$route.fullPath}`)
+    },
+    changeLaguages() {
+      console.log(this.$i18n.locale)
+      const lang = this.$i18n.locale === 'zh' ? 'en' : 'zh'
+      this.$i18n.locale = lang
     }
   }
 }

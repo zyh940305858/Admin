@@ -16,4 +16,3 @@ export function getInfo() {
     method: 'get'
   })
 }
-

@@ -1,12 +1,7 @@
 /*
  * @Author: your name
-<<<<<<< HEAD
- * @Date: 2019-12-19 16:49:25
- * @LastEditTime : 2019-12-20 16:25:12
-=======
  * @Date: 2019-12-19 16:27:04
- * @LastEditTime : 2019-12-19 16:44:27
->>>>>>> origin/whg
+ * @LastEditTime : 2019-12-30 20:28:25
  * @LastEditors  : Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Admin\src\router\index.js
@@ -64,7 +59,7 @@ export const constantRoutes = [
     path: '/test',
     component: Layout,
     redirect: '/test/add',
-    meta: { title: '试题管理', icon: 'dashboard' },
+    meta: { title: 'title', icon: 'dashboard' },
     // redirect: '/test',
     children: [{
       path: 'add',
